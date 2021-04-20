@@ -22,6 +22,6 @@
    - [ ] 8.1. Cursores
    - [ ] 8.2. Prototipo de interfaz de usuario
    - [ ] 8.3. Plan de pruebas
-   - [x] 8.4. Especificaciones de pruebas en [formato features Gherkin (ver ejemplo)](features/admin-carteles.feature) 
+   - [ ] 8.4. Especificaciones de pruebas en [formato features Gherkin (ver ejemplo)](features/admin-carteles.feature) 
    - [ ] 8.5. Diagrama de clases
    - [ ] 8.6. Ejemplo de acceso a la base de datos con Java y JDBC
