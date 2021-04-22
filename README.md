@@ -1,11 +1,11 @@
 # QuevedoFest
 
-- [ ] 1. Introducción
-- [ ] 2. Modelo Conceptual
-   - [ ] 2.1. Especificaciones
-   - [ ] 2.2. Diagrama Entidad-Relación
+- [X] 1. Introducción
+- [X] 2. Modelo Conceptual
+   - [X] 2.1. Especificaciones
+   - [X] 2.2. Diagrama Entidad-Relación
 - [ ] 3. Modelo Lógico 
-   - [ ] 3.1. Modelo Relacional
+   - [X] 3.1. Modelo Relacional
    - [ ] 3.2. Normalización/Desnormalización
 - [ ] 4. Modelo Físico
    - [ ] 4.1. Diagrama de base de datos (notación "Crow's feet" o IDEF1X)
