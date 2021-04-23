@@ -6,7 +6,7 @@
    - [X] 2.2. Diagrama Entidad-Relación
 - [ ] 3. Modelo Lógico 
    - [X] 3.1. Modelo Relacional
-   - [ ] 3.2. Normalización/Desnormalización
+   - [X] 3.2. Normalización/Desnormalización
 - [ ] 4. Modelo Físico
    - [ ] 4.1. Diagrama de base de datos (notación "Crow's feet" o IDEF1X)
    - [ ] 4.2. Creación de tablas y otros objetos

@@ -15,3 +15,17 @@ h2 {
 .fk {
     color:blue;
 }
+
+
+nav {
+    background: aliceblue;
+    text-align: center;
+    border: black solid 1px;
+    margin-top: 20px;
+}
+div{
+    background: lightgoldenrodyellow;
+    text-align: center;
+    border: black solid 1px;
+    margin-top: 20px;
+}
