@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QUEVEDOFEST modelo relacional</title>
+    <title>QUEVEDOFEST primera forma normal</title>
 
-    <link rel="stylesheet" href="estilos_relacional.css">
+    <link rel="stylesheet" href="estilos_normalizacion.css">
 </head>
 
 <body>
@@ -50,14 +50,17 @@
         )</p>
         <p class="tabla">CATERING (
             <span class="pk">id</span>,
+            empresa_encargada,
+            presupuesto
+        )</p>
+        <p class="tabla">LUGAR_CATERING (
+            <span class="pk">id_catering(FK)</span>,
             num_puesto,
             lugar_asignado,
-            empresa_encargada,
             propósito,
             servicio,
             servicio_gratuito,
-            presupuesto
-        )</p>
+            )</p>
         <p class="tabla">CATERING_GRADAS (
             <span class="pk fk" title="id::MATERIAL">id_catering(FK)</span>,
             <span class="pk fk" title="id::ESPACIO">id_espacio(FK)</span>
@@ -66,7 +69,6 @@
             <span class="pk fk" title="id::MATERIAL">id_catering(FK)</span>,
             <span class="pk fk" title="id::ESPACIO">id_espacio(FK)</span>
             )</p>
-
     </section>
 
     <section class="esquema">
@@ -86,13 +88,16 @@
             <span class="pk">id</span>,
             web,
             precio_entrada,
-            patrocinadores,
             redes_sociales
         )</p>
         <p class="tabla">ARTISTAS_CARTEL (
             <span class="pk fk" title="id::CARTEL">id_cartel(FK)</span>,
             <span class="pk fk" title="id::ARTISTA">id_artista(FK)</span>
         )</p>
+        <p class="tabla">PATROCINADORES_CARTEL (
+            <span class="pk">id_cartel</span>,
+            patrocinadores
+            )</p>
         <p class="tabla">AGENDA (
             <span class="pk">cod_actuacion</span>,
             espacio,
@@ -117,6 +122,12 @@
         <p class="tabla">INVITACIONES_ARTISTA (
             <span class="pk fk" title="id::INVITACIONES">cod_invitacion(FK)</span>,
             <span class="pk fk" title="id::ARTISTA">id_artista(FK)</span>
+        )</p>
+        <p class="tabla">REDES_SOCIALES (
+            <span class="pk">id</span>,
+            <span class="pk fk" title="id::ARTISTA">id_artista(FK)</span>,
+            plataforma,
+            nombre_cuenta
         )</p>
     </section>
 
