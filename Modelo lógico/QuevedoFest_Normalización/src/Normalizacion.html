@@ -14,28 +14,19 @@
     <section class="esquema">
         <h2>Área de producción</h2>
         <p class="tabla">ESCENOGRAFÍA (
-            <b>ID_ARTISTA(PK)(FK)</b>, ID_ESPACIO(PK)(FK), COD_ACTUACIÓN(FK)
+            <b>ID</b>, ID_ARTISTA(FK), ID_ESPACIO(FK), COD_ACTUACIÓN(FK)
+        )</p>
+        <p class="tabla">METERIAL_ESCENOGRAFÍA (
+            <b>ID_ESCENOGRAFIA(PK)(FK)</b>, <b>ID_MATERIAL(PK)(FK)</b>
         )</p>
         <p class="tabla">ESPACIOS (
-            <b>ID_ESPACIO(PK)</b>, LOCALIZACIÓN, EMPLEADO_ENCARGADO
-            )</p>
-        <p class="tabla">CAMERINO (
-            <b>ID_ESPACIO(PK)</b>, ID_ARTISTA(PK)(FK)
-            )</p>
-        <p class="tabla">BACKSTAGE (
-            <b>ID_ESPACIO(PK)</b>
-        )</p>
-        <p class="tabla">GRADAS (
-            <b>ID_ESPACIO(PK)</b>, CAPACIDAD
-            )</p>
-        <p class="tabla">ESCENARIO (
-            <b>ID_ESPACIO(PK)</b>
+            <b>ID_ESPACIO(PK)</b>, TIPO, LOCALIZACIÓN, EMPLEADO_ENCARGADO, CAPACIDAD
             )</p>
         <p class="tabla">MATERIAL (
             <b>ID_MATERIAL(PK)</b>, TIPO, PRECIO, TIEMPO_DISPONIBLE, PROVEEDOR, CANTIDAD, ALMACENAJE, DESCRIPCION
             )</p>
         <p class="tabla">MATERIAL_ESPACIO (
-            <b>ID_MATERIAL(PK)(FK)</b>, ID_ESPACIO(PK)(FK)
+            <b>ID_MATERIAL(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
             )</p>
         <p class="tabla">CATERING (
             <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO
@@ -44,10 +35,10 @@
             <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, PROPÓSITO, SERVICIO, SERVICIO_GRATUITO
             )</p>
         <p class="tabla">CATERING_GRADAS (
-            <b>ID_CATERING(PK)(FK)</b>, ID_ESPACIO(PK)(FK)
+            <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
             )</p>
         <p class="tabla">CATERING_CAMERINO (
-            <b>ID_CATERING(PK)(FK)</b>, ID_ESPACIO(PK)(FK)
+            <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
             )</p>
     </section>
     <nav>La primera forma normal considera que cada atributo debe ser atómico(contener un solo valor) para evitar la pérdida de datos. Para conseguirlo,
@@ -57,10 +48,10 @@
     <section class="esquema">
         <h2>Área artística</h2>
         <p class="tabla">ARTISTA (
-            <b>ID_ARTISTA(PK)(FK)</b>, NOMBRE_ARTISTICO, NOMBRE_LEGAL, DNI/PASPORTE, FECHA_NACIMIENTO, CAMPO_ARTISTICO, TELEFONO, SUELDO
+            <b>ID_ARTISTA(PK)(FK)</b>, ID_ESPACIO(FK), NOMBRE_ARTISTICO, NOMBRE_LEGAL, DNI/PASPORTE, FECHA_NACIMIENTO, CAMPO_ARTISTICO, TELEFONO, SUELDO
             )</p>
         <p class="tabla">CARTEL (
-            <b>ID_CARTEL(PK)</b>, WEB, PRECIO_ENTRADA
+            <b>ID_CARTEL(PK)</b>, WEB, PRECIO_ENTRADA 
             )</p>
         <p class="tabla">ARTISTAS_CARTEL (
             <b>ID_CARTEL(PK)(FK)</b>, <b>ID_ARTISTA(PK)(FK)</b>
@@ -69,7 +60,7 @@
             <b>ID_CARTEL(PK)(FK)</b>, PATROCINADORES
             )</p>
         <p class="tabla">AGENDA (
-            <b>COD_ACTUACION(PK)</b>, ESPACIO, TELONERO, FECHA, HORARIO
+            <b>COD_ACTUACION(PK)</b>, TELONERO, FECHA, HORARIO
             )</p>
         <p class="tabla">AGENDA_ARTISTA (
             <b>ID_ARTISTA(PK)(FK)</b>, <b>COD_ACTUACION(PK)(FK)</b>
@@ -95,24 +86,15 @@
    <div><h1>Segunda forma normal</h1></div>
    <h2>Área de producción</h2>
    <section class="esquema">
-       <p class="tabla">ESCENOGRAFÍA (
-           <b>ID_ARTISTA(PK)(FK)</b>, ID_ESPACIO(PK)(FK), COD_ACTUACIÓN(FK)
-           )</p>
-       <p class="tabla">ESPACIOS (
-           <b>ID_ESPACIO(PK)</b>, LOCALIZACIÓN, EMPLEADO_ENCARGADO
-           )</p>
-       <p class="tabla">CAMERINO (
-           <b>ID_ESPACIO(PK)</b>, ID_ARTISTA(PK)(FK)
-           )</p>
-       <p class="tabla">BACKSTAGE (
-           <b>ID_ESPACIO(PK)</b>
-           )</p>
-       <p class="tabla">GRADAS (
-           <b>ID_ESPACIO(PK)</b>, CAPACIDAD
-           )</p>
-       <p class="tabla">ESCENARIO (
-           <b>ID_ESPACIO(PK)</b>
-           )</p>
+        <p class="tabla">ESCENOGRAFÍA (
+            <b>ID</b>, ID_ESPACIO(FK), COD_ACTUACIÓN(FK)
+        )</p>
+        <p class="tabla">METERIAL_ESCENOGRAFÍA (
+            <b>ID_ESCENOGRAFIA(PK)(FK)</b>, <b>ID_MATERIAL(PK)(FK)</b>
+        )</p>
+        <p class="tabla">ESPACIOS (
+            <b>ID_ESPACIO(PK)</b>, TIPO, LOCALIZACIÓN, EMPLEADO_ENCARGADO, CAPACIDAD
+            )</p>
        <p class="tabla">MATERIAL (
            <b>ID_MATERIAL(PK)</b>, TIEMPO_DISPONIBLE, CANTIDAD, ALMACENAJE
            )</p>
@@ -120,7 +102,7 @@
            <b>ID_MATERIAL(PK)</b>, TIPO, PRECIO, PROVEEDOR, DESCRIPCION
            )</p>
        <p class="tabla">MATERIAL_ESPACIO (
-           <b>ID_MATERIAL(PK)(FK)</b>, ID_ESPACIO(PK)(FK)
+           <b>ID_MATERIAL(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
            )</p>
        <p class="tabla">CATERING (
            <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO
@@ -129,10 +111,10 @@
            <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, PROPÓSITO, SERVICIO, SERVICIO_GRATUITO
            )</p>
        <p class="tabla">CATERING_GRADAS (
-           <b>ID_CATERING(PK)(FK)</b>, ID_ESPACIO(PK)(FK)
+           <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
            )</p>
        <p class="tabla">CATERING_CAMERINO (
-           <b>ID_CATERING(PK)(FK)</b>, ID_ESPACIO(PK)(FK)
+           <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
            )</p>
    </section>
    <nav>Para la segunda forma normal, es necesario que esté en 1FN y además todo atributo no clave debe depender de toda la clave principal.

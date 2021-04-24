@@ -6,17 +6,6 @@ h2 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.pk {
-    text-decoration: underline;
-    font-weight: bold;
-    color: green;
-}
-
-.fk {
-    color:blue;
-}
-
-
 nav {
     background: aliceblue;
     text-align: center;
