@@ -14,8 +14,7 @@
         <h2>Área de producción</h2>
         <p class="tabla">ESCENOGRAFIA (
             <span class="pk">id</span>,
-            <span class="pk fk" title="id::ARTISTA">id_artista(FK)</span>,
-            <span class="pk fk" title="id::ESPACIO">id_espacio(FK)</span>,
+            <span class="fk" title="id::ESPACIO">id_espacio(FK)</span>,
             <span class="fk" title="id::AGENDA">cod_actuacion(FK)</span>
         )</p>
         <p class="tabla">MATERIAL_ESCENOGRAFIA (
@@ -46,7 +45,6 @@
             num_puesto,
             lugar_asignado,
             empresa_encargada,
-            proposito,
             servicio,
             servicio_gratuito,
             presupuesto
@@ -101,14 +99,11 @@
             <span class="pk fk" title="id::AGENDA">cod_actuacion(FK)</span>
         )</p>
         <p class="tabla">INVITACIONES (
-            <span class="pk">cod</span>,
+            <span class="pk">cod</span>,            
+            <span class="pk fk" title="id::ARTISTA">id_artista(FK)</span>
             nombre,
             num_acompañantes,
             permisos
-        )</p>
-        <p class="tabla">INVITACIONES_ARTISTA (
-            <span class="pk fk" title="id::INVITACIONES">cod_invitacion(FK)</span>,
-            <span class="pk fk" title="id::ARTISTA">id_artista(FK)</span>
         )</p>
     </section>
 

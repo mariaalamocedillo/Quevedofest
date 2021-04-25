@@ -1,14 +1,10 @@
---USAR CHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEECK
---USAR CHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEECK
---USAR CHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEECK
---USAR CHEEEEEEEEEEEEEEEEEEEEEEEEEEEEEECK
-
-
---SEQUENCIAS
-CREATE SEQUENCE escg1
+--ÁREA ARTÍSTICA
+--
+-- SEQUENCIAS
+--
+CREATE SEQUENCE art
 INCREMENT 1
 START 0;
-
 --
 -- Tabla: ARTISTA
 --
@@ -34,20 +30,6 @@ CREATE TABLE cartel (
 	fecha_festival date NOT NULL,
   CONSTRAINT artista_pk PRIMARY KEY id
 );
-
---
--- Tabla: ESCENOGRAFÍA 
---
-CREATE TABLE escenografia (
-	id int NOT NULL,
-  	id_espacio int NOT NULL,
-  	cod_actuacion int NOT NULL,
-  	CONSTRAINT id PRIMARY KEY escenografia_pk
-	CONSTRAINT escenografia_espacio_id_fk FOREIGN KEY (id_espacio) 
-    	REFERENCES espacio(id),
-	CONSTRAINT escenografia_cod_actuacion_fk FOREIGN KEY (cod_actuacion) 
-    	REFERENCES agenda(cod_actuacion),
-);
 --
 -- Tabla: ARTISTA_CARTEL
 --
@@ -65,22 +47,14 @@ CREATE TABLE artistas_cartel (
 --
 CREATE TABLE invitaciones (
   	codigo int NOT NULL,
+	id_artista int NOT NULL,
 	nombre varchar(30) NOT NULL,
 	num_acompanantes int DEFAULT 0,
-	permisos NOT NULL DEFAULT 'Basico'
-  CONSTRAINT invitaciones_pk PRIMARY KEY codigo
-    CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total')),
-);
---
--- Tabla: INVITACIONES_ARTISTA
---
-CREATE TABLE invitaciones_artista (
-	cod_invitacion int NOT NULL,
-	id_artista int NOT NULL,
-	  CONSTRAINT invit_artist_invitacion_cod_fk FOREIGN KEY (cod_invitacion) 
-    REFERENCES invitaciones(codigo),
-	  CONSTRAINT invit_artist_artista_id_fk FOREIGN KEY (id_artista) 
-    REFERENCES artista(id)
+	permisos NOT NULL DEFAULT 'Basico',
+  CONSTRAINT invitaciones_pk PRIMARY KEY (codigo, id_artista),
+  CONSTRAINT invitaciones_artista_id_fk FOREIGN KEY (id_artista) 
+    REFERENCES artista(id),
+  CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total')),	  
 );
 --
 -- Tabla: AGENDA
@@ -97,7 +71,7 @@ CREATE TABLE agenda (
 --
 -- Tabla: AGENDA_CARTEL
 --
-CREATE TABLE artistas_cartel (
+CREATE TABLE agenda_cartel (
 	id_cartel INT NOT NULL,
 	cod_actuacion INT NOT NULL,
 	CONSTRAINT agenda_cartel_pk PRIMARY KEY (id_cartel, cod_actuacion),
@@ -107,6 +81,22 @@ CREATE TABLE artistas_cartel (
         REFERENCES agenda(cod_actuacion) 
 );
 
+
+--ÁREA DE PRODUCCIÓN
+
+--
+-- Tabla: ESCENOGRAFÍA 
+--
+CREATE TABLE escenografia (
+	id int NOT NULL,
+  	id_espacio int NOT NULL,
+  	cod_actuacion int NOT NULL,
+  	CONSTRAINT id PRIMARY KEY escenografia_pk
+	CONSTRAINT escenografia_espacio_id_fk FOREIGN KEY (id_espacio) 
+    	REFERENCES espacio(id),
+	CONSTRAINT escenografia_cod_actuacion_fk FOREIGN KEY (cod_actuacion) 
+    	REFERENCES agenda(cod_actuacion),
+);
 --
 -- Tabla: MATERIAL_ESCENOGRAFÍA 
 --

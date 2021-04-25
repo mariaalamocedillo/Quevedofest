@@ -14,7 +14,7 @@
     <section class="esquema">
         <h2>Área de producción</h2>
         <p class="tabla">ESCENOGRAFÍA (
-            <b>ID</b>, ID_ARTISTA(FK), ID_ESPACIO(FK), COD_ACTUACIÓN(FK)
+            <b>ID</b>, ID_ESPACIO(FK), COD_ACTUACIÓN(FK)
         )</p>
         <p class="tabla">METERIAL_ESCENOGRAFÍA (
             <b>ID_ESCENOGRAFIA(PK)(FK)</b>, <b>ID_MATERIAL(PK)(FK)</b>
@@ -31,8 +31,8 @@
         <p class="tabla">CATERING (
             <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO
             )</p>
-        <p class="tabla">LUGAR_CATERING (
-            <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, PROPÓSITO, SERVICIO, SERVICIO_GRATUITO
+        <p class="tabla">PUESTO_CATERING (
+            <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, SERVICIO, SERVICIO_GRATUITO
             )</p>
         <p class="tabla">CATERING_GRADAS (
             <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
@@ -42,7 +42,7 @@
             )</p>
     </section>
     <nav>La primera forma normal considera que cada atributo debe ser atómico(contener un solo valor) para evitar la pérdida de datos. Para conseguirlo,
-        en el área de producción debemos separar la tabla de CATERING en dos; una con los datos relacionados con los datos relacionados con la ubicación y su propósito,
+        en el área de producción debemos separar la tabla de CATERING en dos; una con los datos relacionados con los datos relacionados con la ubicación (el puesto),
         y otra con la empresa y el presupuesto (si no lo dividiesemos, la tabla tendría multiples valores en el atributo lugares)</nav>
 
     <section class="esquema">
@@ -69,10 +69,7 @@
             <b>ID_CARTEL(PK)(FK)</b>, <b>COD_ACTUACION(PK)(FK)</b>
         )</p>
         <p class="tabla">INVITACIONES (
-            <b>COD_INVITACION(PK)</b>, NOMBRE, NUM_ACOMPAÑANTES, PERMISOS
-            )</p>
-        <p class="tabla">INVITACIONES_ARTISTA (
-            <b>COD_INVITACION(PK)(FK)</b>, <b>ID_ARTISTA(PK)(FK)</b>
+            <b>COD_INVITACION(PK)</b>, <b>ID_ARTISTA(PK)(FK)</b>, NOMBRE, NUM_ACOMPAÑANTES, PERMISOS
             )</p>
         <p class="tabla">REDES_SOCIALES_ARTISTAS (
             <b>ID_CUENTA(PK)</b>, <b>ID_ARTISTA(PK)(FK)</b>, PLATAFORMA, NOMBRE_CUENTA
@@ -107,8 +104,8 @@
        <p class="tabla">CATERING (
            <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO
            )</p>
-       <p class="tabla">LUGAR_CATERING (
-           <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, PROPÓSITO, SERVICIO, SERVICIO_GRATUITO
+       <p class="tabla">PUESTO_CATERING (
+           <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, SERVICIO, SERVICIO_GRATUITO
            )</p>
        <p class="tabla">CATERING_GRADAS (
            <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
