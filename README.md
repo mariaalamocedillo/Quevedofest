@@ -4,12 +4,12 @@
 - [X] 2. Modelo Conceptual
    - [X] 2.1. Especificaciones
    - [X] 2.2. Diagrama Entidad-Relación
-- [ ] 3. Modelo Lógico 
+- [X] 3. Modelo Lógico 
    - [X] 3.1. Modelo Relacional
    - [X] 3.2. Normalización/Desnormalización
 - [ ] 4. Modelo Físico
-   - [ ] 4.1. Diagrama de base de datos (notación "Crow's feet" o IDEF1X)
-   - [ ] 4.2. Creación de tablas y otros objetos
+   - [X] 4.1. Diagrama de base de datos (notación "Crow's feet" o IDEF1X)
+   - [X] 4.2. Creación de tablas y otros objetos
    - [ ] 4.3. Carga de datos de prueba
 - [ ] 5. Consultas de la base de datos
    - [ ] 5.1. Consultas más frecuentes
