@@ -4,15 +4,15 @@
 --
 CREATE TABLE artista (
   	id int NOT NULL,
-  	DNI/PAS char(9) NOT NULL DEFAULT '',
+  	DNI_PAS char(9) NOT NULL DEFAULT '',
 	nombreLegal varchar(30) NOT NULL,
 	nombreArtistico varchar(15) NOT NULL, 
 	fechaNac date NOT NULL,
 	campoArtistico varchar(15),
 	telefono bigint DEFAULT NULL,
 	sueldo numeric(10,0),
-  CONSTRAINT artista_pk PRIMARY KEY id,
-  CONSTRAINT artista_dni_ux UNIQUE (dni) 
+  CONSTRAINT artista_pk PRIMARY KEY (id),
+  CONSTRAINT artista_dni_ux UNIQUE (DNI_PAS) 
 );
 
 --
@@ -21,9 +21,9 @@ CREATE TABLE artista (
 CREATE TABLE rrss_artista (
   	id int NOT NULL,
   	id_artista int NOT NULL,
-	plataforma varchar(10) NOT NULL
+	plataforma varchar(10) NOT NULL,
 	nombre_cuenta varchar(30) NOT NULL,
-  CONSTRAINT rrss_artista_pk PRIMARY KEY id,
+  CONSTRAINT rrss_artista_pk PRIMARY KEY (id),
   CONSTRAINT rrss_artista_id_fk FOREIGN KEY (id_artista) 
         REFERENCES artista(id) 
 );
@@ -36,7 +36,7 @@ CREATE TABLE cartel (
   	web varchar(60),
 	precio_entrada int,
 	fecha_festival date NOT NULL,
-  CONSTRAINT artista_pk PRIMARY KEY id
+  CONSTRAINT cartel_pk PRIMARY KEY (id)
 );
 --
 -- Tabla: ARTISTA_CARTEL
@@ -58,11 +58,11 @@ CREATE TABLE invitaciones (
 	id_artista int NOT NULL,
 	nombre varchar(30) NOT NULL,
 	num_acompanantes int DEFAULT 0,
-	permisos NOT NULL DEFAULT 'Basico',
+	permisos varchar(8) NOT NULL DEFAULT 'Basico',
   CONSTRAINT invitaciones_pk PRIMARY KEY (codigo, id_artista),
   CONSTRAINT invitaciones_artista_id_fk FOREIGN KEY (id_artista) 
     REFERENCES artista(id),
-  CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total')),	  
+  CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total'))  
 );
 --
 -- Tabla: AGENDA
@@ -72,7 +72,7 @@ CREATE TABLE agenda (
 	id_artista int NOT NULL,
 	fecha date NOT NULL,
 	horario time,
-  CONSTRAINT agenda_pk PRIMARY KEY cod_actuacion,
+  CONSTRAINT agenda_pk PRIMARY KEY (cod_actuacion),
 	CONSTRAINT agenda_telonero_id_fk FOREIGN KEY (id_artista) 
     REFERENCES artista(id)
 );
@@ -91,7 +91,18 @@ CREATE TABLE agenda_cartel (
 
 
 --ÁREA DE PRODUCCIÓN
-
+--
+-- Tabla: ESPACIO
+--
+CREATE TABLE espacio (
+	id int NOT NULL,
+	tipo varchar(12) NOT NULL,
+	empleado_encargado varchar(30) NOT NULL, --el nombre del encargado
+	localizacion char(2) NOT NULL,
+  	CONSTRAINT espacio_pk PRIMARY KEY (id),
+    CONSTRAINT espacio_tipo_ck CHECK (tipo IN ('Escenario','Backstage','Camerino','Gradas')),
+    CONSTRAINT espacio_localizacion_ck CHECK (localizacion IN ('1A', '2A', '1B', '2B'))
+);
 --
 -- Tabla: ESCENOGRAFÍA 
 --
@@ -99,11 +110,11 @@ CREATE TABLE escenografia (
 	id int NOT NULL,
   	id_espacio int NOT NULL,
   	cod_actuacion int NOT NULL,
-  	CONSTRAINT escenografia_pk PRIMARY KEY id
+  	CONSTRAINT escenografia_pk PRIMARY KEY (id),
 	CONSTRAINT escenografia_espacio_id_fk FOREIGN KEY (id_espacio) 
     	REFERENCES espacio(id),
 	CONSTRAINT escenografia_cod_actuacion_fk FOREIGN KEY (cod_actuacion) 
-    	REFERENCES agenda(cod_actuacion),
+    	REFERENCES agenda(cod_actuacion)
 );
 --
 -- Tabla: MATERIAL
@@ -118,10 +129,11 @@ CREATE TABLE material (
 	cantidad int NOT NULL DEFAULT 1, --mínimo ordenarán una unidad
 	almacenaje char(2) NOT NULL DEFAULT 'EU',
 	descripcion varchar(50),
-  	CONSTRAINT material_pk PRIMARY KEY id,
+  	CONSTRAINT material_pk PRIMARY KEY (id),
     CONSTRAINT material_tipo_ck CHECK (tipo IN ('Iluminacion','Sonido','Atrezo','Imagen','Grabacion','Otros')),
     CONSTRAINT material_almacen_ck CHECK (almacenaje IN ('1B', '2B', 'EU'))--EU indica que está en uso(por ejemplo, material básico de los escenarios, que no se puede almacenar porque debe estar siempre montado)
 );
+
 
 --
 -- Tabla: MATERIAL_ESCENOGRAFÍA 
@@ -135,18 +147,6 @@ CREATE TABLE material_escenografia (
 	  CONSTRAINT mat_esc_escenografia_id_fk FOREIGN KEY (id_escenografia) 
     REFERENCES escenografia (id)
 );
---
--- Tabla: ESPACIO
---
-CREATE TABLE espacio (
-	id int NOT NULL,
-	tipo varchar(12) NOT NULL,
-	empleado_encargado varchar(30) NOT NULL, --el nombre del encargado
-	localizacion char(2) NOT NULL,
-  	CONSTRAINT espacio_pk PRIMARY KEY id,
-    CONSTRAINT espacio_tipo_ck CHECK (tipo IN ('Escenario','Backstage','Camerino','Gradas')),
-    CONSTRAINT espacio_localizacion_ck CHECK (localizacion IN ('1A', '2A', '1B', '2B'))
-);
 
 --
 -- Tabla: CATERING
@@ -155,7 +155,7 @@ CREATE TABLE catering (
 	id INT NOT NULL, 
 	empresa_encargada varchar(10) NOT NULL,
 	presupuesto numeric(10,0) NOT NULL,
-	CONSTRAINT puesto_catering_pk PRIMARY KEY id
+	CONSTRAINT catering_pk PRIMARY KEY (id)
 );
 --
 -- Tabla: PUESTOS_CATERING
@@ -167,11 +167,11 @@ CREATE TABLE puesto_catering (
 	lugar_asignado char(2) NOT NULL,
 	servicio varchar(10) NOT NULL,
 	servicio_gratuito varchar(20),
-	CONSTRAINT puesto_catering_pk PRIMARY KEY id,
+	CONSTRAINT puesto_catering_pk PRIMARY KEY (id),
 	CONSTRAINT puesto_catering_catering_id_fk FOREIGN KEY (id_catering) 
         REFERENCES catering(id),
     CONSTRAINT puesto_catering_lugar_ck CHECK (lugar_asignado IN ('1A', '2A', '1B', '2B')),
-	CONSTRAINT puesto_catering_servicio_ck CHECK (localizacion IN ('Comida', 'Bebida', 'Mixto'))
+	CONSTRAINT puesto_catering_servicio_ck CHECK (servicio IN ('Comida', 'Bebida', 'Mixto'))
 );
 --
 -- Tabla: ESPACIO_PUESTO
