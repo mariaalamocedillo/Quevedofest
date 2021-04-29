@@ -1,3 +1,4 @@
+##Especificaciones
 En el mes de mayo tendrá lugar un festival de música llamado QuevedoFest durante x días.
 Dicho festival recibirá artistas de distintas partes del mundo, que realizarán distintas actuaciones de distintas modalidades musicales; guitarristas, violinistas, cantantes... individuales o grupales.   
 Habrá dos escenarios, por lo que podrán actuar varios artistas al mismo tiempo. Cada actuación durará 1 hora si es el principal, y 30 minutos para los teloneros. Los asistentes podrán elegir ver la actuación que deseen.   
