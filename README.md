@@ -5,8 +5,8 @@
    - [X] 2.1. [Especificaciones](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/Especificaciones.md)
    - [X] 2.2. [Diagrama Entidad-Relación](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/Modelo%20E-R.png)
 - [X] 3. Modelo Lógico 
-   - [X] 3.1. [Modelo Relacional]()
-   - [X] 3.2. [Normalización/Desnormalización]()
+   - [X] 3.1. [Modelo Relacional](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20l%C3%B3gico/Modelo%20relacional.PNG)
+   - [X] 3.2. [Normalización/Desnormalización](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20l%C3%B3gico/Modelo%20normalizado.png)
 - [ ] 4. Modelo Físico
    - [X] 4.1. [Diagrama de base de datos (notación "Crow's feet")](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Crows_feet.png)
    - [X] 4.2. [Creación de tablas y otros objetos](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/QF%20Tablas.sql)
