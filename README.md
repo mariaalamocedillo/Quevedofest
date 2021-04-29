@@ -1,21 +1,21 @@
 # QuevedoFest
 
-- [X] 1. Introducción
+- [X] 1. [Introducción](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Introducci%C3%B3n/Introducci%C3%B3n.md)
 - [X] 2. Modelo Conceptual
-   - [X] 2.1. Especificaciones
-   - [X] 2.2. Diagrama Entidad-Relación
+   - [X] 2.1. [Especificaciones](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/Especificaciones.md)
+   - [X] 2.2. [Diagrama Entidad-Relación](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/Modelo%20E-R.png)
 - [X] 3. Modelo Lógico 
-   - [X] 3.1. Modelo Relacional
-   - [X] 3.2. Normalización/Desnormalización
+   - [X] 3.1. [Modelo Relacional]()
+   - [X] 3.2. [Normalización/Desnormalización]()
 - [ ] 4. Modelo Físico
-   - [X] 4.1. Diagrama de base de datos (notación "Crow's feet" o IDEF1X)
-   - [X] 4.2. Creación de tablas y otros objetos
-   - [ ] 4.3. Carga de datos de prueba
+   - [X] 4.1. [Diagrama de base de datos (notación "Crow's feet")](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Crows_feet.png)
+   - [X] 4.2. [Creación de tablas y otros objetos](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/QF%20Tablas.sql)
+   - [ ] 4.3. [Carga de datos de prueba]()
 - [ ] 5. Consultas de la base de datos
-   - [ ] 5.1. Consultas más frecuentes
-   - [ ] 5.2. Consultas sencillas
-   - [ ] 5.3. Consultas de agregación y resumen
-   - [ ] 5.4. Consultas con subconsultas
+   - [ ] 5.1. [Consultas más frecuentes]()
+   - [ ] 5.2. [Consultas sencillas]()
+   - [ ] 5.3. [Consultas de agregación y resumen]()
+   - [ ] 5.4. [Consultas con subconsultas]()
 - [ ] 6. Vistas, secuencias e índices
 - [ ] 7. Scripts en PL/pgSQL
 - [ ] 8. Extras
