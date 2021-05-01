@@ -29,17 +29,17 @@
             <b>ID_MATERIAL(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
             )</p>
         <p class="tabla">CATERING (
-            <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO
+            <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO, SERVICIO_GRATUITO
             )</p>
         <p class="tabla">PUESTO_CATERING (
-            <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, SERVICIO, SERVICIO_GRATUITO
+            <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, SERVICIO
             )</p>
         <p class="tabla">CATERING_ESPACIO (
             <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
             )</p>
     </section>
     <nav>La primera forma normal considera que cada atributo debe ser atómico(contener un solo valor) para evitar la pérdida de datos. Para conseguirlo,
-        en el área de producción debemos separar la tabla de CATERING en dos; una con los datos relacionados con los datos relacionados con la ubicación (el puesto),
+        en el área de producción debemos separar la tabla de CATERING en dos; una con los datos relacionados con la ubicación (el puesto),
         y otra con la empresa y el presupuesto (si no lo dividiesemos, la tabla tendría multiples valores en el atributo lugares)</nav>
 
     <section class="esquema">
@@ -99,10 +99,10 @@
            <b>ID_MATERIAL(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
            )</p>
        <p class="tabla">CATERING (
-           <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO
+           <b>ID_CATERING(PK)</b>, EMPRESA_ENCARGADA, PRESUPUESTO, SERVICIO_GRATUITO
            )</p>
        <p class="tabla">PUESTO_CATERING (
-           <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, SERVICIO, SERVICIO_GRATUITO
+           <b>ID_CATERING(PK)(FK)</b>, NUM_PUESTO, LUGAR_ASIGNADO, SERVICIO
            )</p>
        <p class="tabla">CATERING_ESPACIO (
            <b>ID_CATERING(PK)(FK)</b>, <b>ID_ESPACIO(PK)(FK)</b>
