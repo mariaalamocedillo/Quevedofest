@@ -15,9 +15,6 @@ CREATE TABLE artista (
   CONSTRAINT artista_pk PRIMARY KEY (id),
   CONSTRAINT artista_dni_ux UNIQUE (DNI_PAS) 
 );
-CREATE SEQUENCE art
-INCREMENT 1
-START 1;
 --
 -- Tabla: RRSS_ARTISTA
 --
@@ -30,9 +27,6 @@ CREATE TABLE rrss_artista (
   CONSTRAINT rrss_artista_id_fk FOREIGN KEY (id_artista) 
         REFERENCES artista(id) 
 );
-CREATE SEQUENCE rrss
-INCREMENT 1
-START 1;
 --
 -- Tabla: INVITACIONES
 --
@@ -47,9 +41,6 @@ CREATE TABLE invitaciones (
     REFERENCES artista(id),
   CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total'))  
 );
-CREATE SEQUENCE cod_inv
-INCREMENT 1
-START 1;
 --
 -- Tabla: CARTEL 	
 -- 
@@ -60,9 +51,6 @@ CREATE TABLE cartel (
 	fecha_festival date NOT NULL,
   CONSTRAINT cartel_pk PRIMARY KEY (id)
 );
-CREATE SEQUENCE cart
-INCREMENT 1
-START 1;
 --
 -- Tabla: ARTISTA_CARTEL
 --
@@ -87,9 +75,6 @@ CREATE TABLE agenda (
 	CONSTRAINT agenda_telonero_id_fk FOREIGN KEY (id_artista) 
     REFERENCES artista(id)
 );
-CREATE SEQUENCE age
-INCREMENT 1
-START 1;
 --
 -- Tabla: AGENDA_CARTEL
 --
@@ -116,9 +101,6 @@ CREATE TABLE espacio (
     CONSTRAINT espacio_tipo_ck CHECK (tipo IN ('Escenario','Backstage','Camerino','Gradas', 'Almacen')),
     CONSTRAINT espacio_localizacion_ck CHECK (localizacion IN ('1A', '2A', '1B', '2B'))
 );
-CREATE SEQUENCE esp
-INCREMENT 1
-START 1;
 --
 -- Tabla: CAMERINO_ARTISTA
 --
@@ -144,20 +126,17 @@ CREATE TABLE escenografia (
 	CONSTRAINT escenografia_cod_actuacion_fk FOREIGN KEY (cod_actuacion) 
     	REFERENCES agenda(cod_actuacion)
 );
-CREATE SEQUENCE escg
-INCREMENT 1
-START 1;
 --
 -- Tabla: MATERIAL
 --
 CREATE TABLE material (
 	id int NOT NULL,
-	nombre varchar(20) NOT NULL,
+	nombre varchar(30) NOT NULL,
 	tipo varchar(12) NOT NULL DEFAULT 'Otros',
 	precio numeric(10,0) DEFAULT 0,		--por unidad
 	inicio_disponibilidad TIMESTAMP NOT NULL, --TIMESTAMP '2004-10-19 10:23:54'
 	fin_disponibilidad TIMESTAMP,
-	proveedor varchar(20) NOT NULL,
+	proveedor varchar(30) NOT NULL,
 	cantidad int NOT NULL DEFAULT 1, --mínimo ordenarán una unidad
 	almacenaje char(2) NOT NULL DEFAULT 'EU',
 	descripcion varchar(50),
@@ -165,9 +144,6 @@ CREATE TABLE material (
     CONSTRAINT material_tipo_ck CHECK (tipo IN ('Iluminacion','Sonido','Atrezo','Imagen','Grabacion','Otros')),
     CONSTRAINT material_almacen_ck CHECK (almacenaje IN ('1B', '2B', 'EU'))--EU indica que está en uso(por ejemplo, material básico de los escenarios, que no se puede almacenar porque debe estar siempre montado)
 );
-CREATE SEQUENCE mat
-INCREMENT 1
-START 1;
 
 --
 -- Tabla: MATERIAL_ESCENOGRAFÍA 
@@ -187,14 +163,11 @@ CREATE TABLE material_escenografia (
 --
 CREATE TABLE catering (
 	id INT NOT NULL, 
-	empresa_encargada varchar(10) NOT NULL,
+	empresa_encargada varchar(30) NOT NULL,
 	presupuesto numeric(10,0) NOT NULL,
-	servicio_gratuito varchar(20),
+	servicio_gratuito varchar(30),
 	CONSTRAINT catering_pk PRIMARY KEY (id)
 );
-CREATE SEQUENCE cat
-INCREMENT 1
-START 1;
 --
 -- Tabla: PUESTOS_CATERING
 --
@@ -213,6 +186,3 @@ CREATE TABLE puesto_catering (
         REFERENCES espacio(id),
 	CONSTRAINT puesto_catering_servicio_ck CHECK (servicio IN ('Comida', 'Bebida', 'Mixto'))
 );
-CREATE SEQUENCE puest
-INCREMENT 1
-START 1;
