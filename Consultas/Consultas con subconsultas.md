@@ -20,3 +20,6 @@ Mostar los géneros musicales que se tocará en cada actuación
 Mostrar los artistas que necesitarán rótulos pirotécnicos o fuegos fríos
 ```sql
 ```
+Mostrar las zonas donde no se proporciona comida o bebida
+```sql
+```
