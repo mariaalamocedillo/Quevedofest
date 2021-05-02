@@ -82,37 +82,6 @@ INSERT into rrss_artista values (nextval(rrss), 1, 'instagram','@PostMalone'),
 (nextval(rrss), 13, 'tiktok', '@theregrettes'), 
 (nextval(rrss), 14, 'instagram', '@chinchikats'), 
 --
--- Tabla: CARTEL 	
--- 
-CREATE TABLE cartel (
-  	id int NOT NULL,
-  	web varchar(60),
-	precio_entrada int,
-	fecha_festival date NOT NULL,
-  CONSTRAINT cartel_pk PRIMARY KEY (id)
-);
-CREATE SEQUENCE cart
-INCREMENT 1
-START 1;
-INSERT into cartel values (nextval(cart), 'https://www.quevedofest.com', 35, 21-05-2021),
-	(nextval(cart), 'https://www.quevedofest.com', 70, 20-05-2021),
-	(nextval(cart), 'https://www.quevedofest.com', 35, 22-05-2021)
---
--- Tabla: ARTISTA_CARTEL
---
-CREATE TABLE artistas_cartel (
-	id_cartel INT NOT NULL,
-	id_artista INT NOT NULL,
-	CONSTRAINT artista_cartel_pk PRIMARY KEY (id_cartel, id_artista),
-	CONSTRAINT art_cart_cartel_id_fk FOREIGN KEY (id_cartel) 
-        REFERENCES cartel(id),
-	CONSTRAINT art_cart_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id) 
-);
-INSERT into artistas_cartel values (1, 1), (1, 2), (1, 4), (1, 7), 
-	(2, 1), (2, 5), (2, 6), (2, 8), (2, 9), (2, 11), (2, 3), (2, 16), 
-	(2, 15), (2, 10), (3, 1), (3, 3), (3, 10), (3, 7), (3, 4), (3, 9)
---
 -- Tabla: INVITACIONES
 --
 CREATE TABLE invitaciones (
@@ -144,6 +113,38 @@ INSERT into invitaciones values (nextval(cod_inv), 1, 'Andrea Joe', 1, 'VIP'),
 								(nextval(cod_inv), 13, 'Mario Molina', 4, 'Total'),
 								(nextval(cod_inv), 13, 'Sinesio Delgado', 0, 'VIP'),
 
+
+--
+-- Tabla: CARTEL 	
+-- 
+CREATE TABLE cartel (
+  	id int NOT NULL,
+  	web varchar(60),
+	precio_entrada int,
+	fecha_festival date NOT NULL,
+  CONSTRAINT cartel_pk PRIMARY KEY (id)
+);
+CREATE SEQUENCE cart
+INCREMENT 1
+START 1;
+INSERT into cartel values (nextval(cart), 'https://www.quevedofest.com', 35, 21-05-2021),
+	(nextval(cart), 'https://www.quevedofest.com', 70, 20-05-2021),
+	(nextval(cart), 'https://www.quevedofest.com', 35, 22-05-2021)
+--
+-- Tabla: ARTISTA_CARTEL
+--
+CREATE TABLE artistas_cartel (
+	id_cartel INT NOT NULL,
+	id_artista INT NOT NULL,
+	CONSTRAINT artista_cartel_pk PRIMARY KEY (id_cartel, id_artista),
+	CONSTRAINT art_cart_cartel_id_fk FOREIGN KEY (id_cartel) 
+        REFERENCES cartel(id),
+	CONSTRAINT art_cart_artista_id_fk FOREIGN KEY (id_artista) 
+        REFERENCES artista(id) 
+);
+INSERT into artistas_cartel values (1, 1), (1, 2), (1, 4), (1, 7), 
+	(2, 1), (2, 5), (2, 6), (2, 8), (2, 9), (2, 11), (2, 3), (2, 16), 
+	(2, 15), (2, 10), (3, 1), (3, 3), (3, 10), (3, 7), (3, 4), (3, 9)
 
 --
 -- Tabla: AGENDA
@@ -238,6 +239,20 @@ INSERT into espacio values ( nextval(esp), 'Escenario', 'Ana Rodriguez', '1A'),
 ( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B'),
 ( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B'),
 ( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B')
+--
+-- Tabla: CAMERINO_ARTISTA
+--
+CREATE TABLE camerino_artista (
+	id_camerino INT NOT NULL,
+	id_artista INT NOT NULL,
+	CONSTRAINT camerino_artista_pk PRIMARY KEY (id_camerino, id_artista),
+	CONSTRAINT camerino_artista_espacio_id_fk FOREIGN KEY (id_camerino) 
+        REFERENCES espacio(id),
+	CONSTRAINT camerino_artista_artista_id_fk FOREIGN KEY (id_artista) 
+        REFERENCES artista(id)
+);
+INSERT into espacio values (9, 4), (10, 2), (11, 8), (13, 13), (14, 1), (15, 10), 
+(17, 6), (18, 14), (19, 3), (20, 12)
 
 --
 -- Tabla: ESCENOGRAFÍA 
@@ -377,11 +392,14 @@ CREATE TABLE puesto_catering (
 	id_catering INT NOT NULL,
 	num_puesto INT NOT NULL,
 	lugar_asignado char(2) NOT NULL,
+		id_espacio INT NOT NULL,
 	servicio varchar(10) NOT NULL,
 	CONSTRAINT puesto_catering_pk PRIMARY KEY (id),
 	CONSTRAINT puesto_catering_catering_id_fk FOREIGN KEY (id_catering) 
         REFERENCES catering(id),
     CONSTRAINT puesto_catering_lugar_ck CHECK (lugar_asignado IN ('1A', '2A', '1B', '2B')),
+	CONSTRAINT espacio_puesto_espacio_id_fk FOREIGN KEY (id_espacio) 
+        REFERENCES espacio(id),
 	CONSTRAINT puesto_catering_servicio_ck CHECK (servicio IN ('Comida', 'Bebida', 'Mixto'))
 );
 CREATE SEQUENCE puest
@@ -427,9 +445,6 @@ INSERT into puesto_catering values (nextval(puest), 1, 1, '1B', 'Mixto'),
 CREATE TABLE espacio_puesto (
 	id_puesto INT NOT NULL,
 	id_espacio INT NOT NULL,
-	CONSTRAINT espacio_puesto_pk PRIMARY KEY (id_puesto, id_espacio),
-	CONSTRAINT espacio_puesto_catering_id_fk FOREIGN KEY (id_puesto) 
-        REFERENCES puesto_catering(id),
 	CONSTRAINT espacio_puesto_espacio_id_fk FOREIGN KEY (id_espacio) 
         REFERENCES espacio(id)
 );
