@@ -5,10 +5,10 @@
 CREATE SEQUENCE art
 INCREMENT 1
 START 1;
-INSERT into artista values (nextval(art), 'ZAB211485', 'Austin Richard', 'Post Malone', '1995-05-09', 'cantante', 015555552, 15000),
-		(nextval(art), '45653252K', 'Rosalia Vila', 'Rosalia', '1996-02-28', 'cantante', 665241522, 10000),
-		(nextval(art), 'E62777698', 'Ara Malikian', 'Ara Malikian', '1968-09-21', 'violinista', 628015023, 3000),  
-		(nextval(art), '57547437L','Estrella de la Aurora Morente', 'Estrella Morente',  '1980-08-15', 'cantante', 'Pop', 634416100, 2000), 
+INSERT into artista values (nextval(art), 'ZAB211485', 'Austin Richard', 'Post Malone', '1995-05-09', 'cantante', 'Rap', 015555552, 15000),
+		(nextval(art), '45653252K', 'Rosalia Vila', 'Rosalia', '1996-02-28', 'cantante', 'Flamenco', 665241522, 10000),
+		(nextval(art), 'E62777698', 'Ara Malikian', 'Ara Malikian', '1968-09-21', 'violinista', 'Clasico-Pop', 628015023, 3000),  
+		(nextval(art), '57547437L','Estrella de la Aurora Morente', 'Estrella Morente',  '1980-08-15', 'cantante', 'Flamenco', 634416100, 2000), 
 		(nextval(art), '75698752K','Ernesto sanchez', 'Elver Galarga',  '1991-09-05', 'telonero', 'Rock', 689378341, 1000),
 		(nextval(art), '34887653H','Juan Aparicio Gomez', 'El Juanpar',  '1995-09-07', 'bateria', 'Punk', 611494529, 700),
 		(nextval(art), '07643288L','Paula Buk', 'Buki',  '1997-11-12', 'telonero', 'Trap', 615229832, 1500),
@@ -24,9 +24,7 @@ INSERT into artista values (nextval(art), 'ZAB211485', 'Austin Richard', 'Post M
 		(nextval(art), '99489495K','Jhonatan Alfonso', 'JHoNy',  '1998-03-22', 'telonero', 'Pop', 678656543, 900),
 		(nextval(art), '86849485H','David Coaguallelo', 'DaVId',  '2000-03-12', 'telonero', 'Trap', 674665765, 1000),
 		(nextval(art), 'E45858490','Daniel Alcaide', 'DanAl',  '1996-06-12', 'cantante', 'Trap', 698457428, 1200),
-		(nextval(art), 'F45455542','Maria Estela', 'EsTla',  '1994-09-22', 'cantante', 'Pop', 673568447, 1800)
-
-
+		(nextval(art), 'F45455542','Maria Estela', 'EsTla',  '1994-09-22', 'cantante', 'Pop', 673568447, 1800);
 
 --
 -- Tabla: RRSS_ARTISTA
@@ -58,7 +56,7 @@ INSERT into rrss_artista values (nextval(rrss), 1, 'instagram','@PostMalone'),
 (nextval(rrss), 11, 'facebook', '@julioal'), 
 (nextval(rrss), 13, 'instagram', '@theregrettes'), 
 (nextval(rrss), 13, 'tiktok', '@theregrettes'), 
-(nextval(rrss), 14, 'instagram', '@chinchikats'), 
+(nextval(rrss), 14, 'instagram', '@chinchikats');
 --
 -- Tabla: INVITACIONES
 -
@@ -78,7 +76,7 @@ INSERT into invitaciones values (nextval(cod_inv), 1, 'Andrea Joe', 1, 'VIP'),
 (nextval(cod_inv), 9, 'Estefanía Torres', 3, 'Basico'),
 (nextval(cod_inv), 11, 'Sergio Gonzalez', 1, 'Basico'),
 (nextval(cod_inv), 13, 'Mario Molina', 4, 'Total'),
-(nextval(cod_inv), 13, 'Sinesio Delgado', 0, 'VIP')
+(nextval(cod_inv), 13, 'Sinesio Delgado', 0, 'VIP');
 
 --
 -- Tabla: CARTEL 	
@@ -88,13 +86,13 @@ INCREMENT 1
 START 1;
 INSERT into cartel values (nextval(cart), 'https://www.quevedofest.com', 35, 21-05-2021),
 	(nextval(cart), 'https://www.quevedofest.com', 70, 20-05-2021),
-	(nextval(cart), 'https://www.quevedofest.com', 35, 22-05-2021)
+	(nextval(cart), 'https://www.quevedofest.com', 35, 22-05-2021);
 --
 -- Tabla: ARTISTA_CARTEL
 --
 INSERT into artistas_cartel values (1, 1), (1, 2), (1, 4), (1, 7), 
 	(2, 1), (2, 5), (2, 6), (2, 8), (2, 9), (2, 11), (2, 3), (2, 16), 
-	(2, 15), (2, 10), (3, 1), (3, 3), (3, 10), (3, 7), (3, 4), (3, 9)
+	(2, 15), (2, 10), (3, 1), (3, 3), (3, 10), (3, 7), (3, 4), (3, 9);
 
 --
 -- Tabla: AGENDA
@@ -122,7 +120,7 @@ INSERT into agenda values (nextval(age), 5, '20-05-2021', '19:45:00'),
 (nextval(age), 11, '20-05-2021', '23:30:00'), 
 (nextval(age), 10, '20-05-2021', '23:45:00'), 
 (nextval(age), 18, '20-05-2021', '00:45:00'), 
-(nextval(age), 1, '20-05-2021', '01:00:00')
+(nextval(age), 1, '20-05-2021', '01:00:00');
 
 --
 -- Tabla: AGENDA_CARTEL
@@ -130,7 +128,7 @@ INSERT into agenda values (nextval(age), 5, '20-05-2021', '19:45:00'),
 INSERT into agenda values (1, 8), (1, 20), (1, 14), (1, 7), (1, 11), (2, 8), 
 (2, 20), (2, 1), (2, 6), (2, 4), (2, 3), (2, 17),
 (2, 2), (2, 5), (2, 9), (2, 13), (2, 18), (3, 20), 
-(3, 2), (3, 7), (3, 14), (3, 3)
+(3, 2), (3, 7), (3, 14), (3, 3);
 
 --ÁREA DE PRODUCCIÓN
 --
@@ -161,12 +159,12 @@ INSERT into espacio values ( nextval(esp), 'Escenario', 'Ana Rodriguez', '1A'),
 ( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B'),
 ( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B'),
 ( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B'),
-( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B')
+( nextval(esp), 'Camerino', 'Pedro Gonalvo', '2B');
 --
 -- Tabla: CAMERINO_ARTISTA
 --
 INSERT into espacio values (9, 4), (10, 2), (11, 8), (13, 13), (14, 1), (15, 10), 
-(17, 6), (18, 14), (19, 3), (20, 12)
+(17, 6), (18, 14), (19, 3), (20, 12);
 
 --
 -- Tabla: ESCENOGRAFÍA 
@@ -194,7 +192,7 @@ INSERT into espacio values (nextval(escg), 1, 1),
 (nextval(escg), 2, 17),
 (nextval(escg), 2, 18),
 (nextval(escg), 2, 19),
-(nextval(escg), 2, 20)
+(nextval(escg), 2, 20);
 
 --
 -- Tabla: MATERIAL
@@ -203,7 +201,7 @@ CREATE SEQUENCE mat
 INCREMENT 1
 START 1;
 
-INSERT into material values (nextval(mat), 'Platformas escenario', 'Otros', 50, '2021-05-19 12:00:00', '2021-05-23 12:00:00', 'Espectaculos Romero SA', 500, 'EU', 'Plataformas para los escenarios')
+INSERT into material values (nextval(mat), 'Platformas escenario', 'Otros', 50, '2021-05-19 12:00:00', '2021-05-23 12:00:00', 'Espectaculos Romero SA', 500, 'EU', 'Plataformas para los escenarios'),
 (nextval(mat), 'Focos blancos escenario', 'Iluminacion', 20, '2021-05-19 17:00:00', '2021-05-23 12:00:00', 'Espectaculos Romero SA', 90, 'EU', 'Focos blancos para alumbrar los escenarios'),
 (nextval(mat), 'Antorchas LED', 'Iluminacion', 50, '2021-05-19 20:00:00', '2021-05-23 12:00:00', 'Espectaculos Romero SA', 15, 'EU', 'Iluminación para las gradas tras los conciertos'),
 (nextval(mat), 'Focos colores escenario', 'Iluminacion', 45, '2021-05-19 17:00:00', '2021-05-23 12:00:00', 'Ilusion SA', 50, 'EU', 'Luces de colores'),
@@ -222,7 +220,7 @@ INSERT into material values (nextval(mat), 'Platformas escenario', 'Otros', 50, 
 (nextval(mat), 'Kenwood Protalk TK-3501', 'Otros', NULL, '2021-05-19 12:00:00', '2021-05-23 12:00:00', 'KenWood', 200, 'EU', 'WalkieTalkie para los técnicos'),
 (nextval(mat), 'Slider MD-500', 'Grabacion', 300, '2021-05-19 12:00:00', '2021-05-23 12:00:00', 'Canon', 4, 'EU', 'Carril motorizado para cámara de video'),
 (nextval(mat), 'Maquina humo', 'Atrezo', 300, '2021-05-19 20:00:00', '2021-05-23 06:00:00', 'Estatella SA', 5, '1B', 'Máquina de humo para escenario'),
-(nextval(mat), 'LEDS', 'Atrezo', 5, '2021-05-19 20:00:00', NULL, 'Estatella SA', 150, '1B', 'LEDS de colores para escenario; baras de 2 metros'),
+(nextval(mat), 'LEDS', 'Atrezo', 5, '2021-05-19 20:00:00', NULL, 'Estatella SA', 150, '1B', 'LEDS de colores para escenario; baras de 2 metros');
 --
 -- Tabla: MATERIAL_ESCENOGRAFÍA 
 --
@@ -236,7 +234,7 @@ INSERT into material_escenografia values (7, 250, 2), (8, 2, 6),
 (19, 1, 20), (20, 30, 16), 
 (20, 40, 4), (20, 20, 8), 
 (20, 25, 14), (20, 60, 10), 
-(8, 4, 10), (7, 250, 10)
+(8, 4, 10), (7, 250, 10);
 --
 -- Tabla: CATERING
 --
@@ -252,7 +250,7 @@ INSERT into catering values ( nextval(cat), 'Ismar Group SI', 9500, '1 botella v
 ( nextval(cat), 'Oscar Mayer', 20000, '1 perrito por espectador'),
 ( nextval(cat), 'The CocaCola Company', 16000, '2 latas por espectador'),
 ( nextval(cat), 'Monster Beverage Corporation', 12000, '1 muestra por espectador'),
-( nextval(cat), 'PinkiBurguer', 21000, '1 hamburguesa por espectador')
+( nextval(cat), 'PinkiBurguer', 21000, '1 hamburguesa por espectador');
 
 --
 -- Tabla: PUESTOS_CATERING
@@ -302,4 +300,4 @@ INSERT into puesto_catering values (nextval(puest), 1, 1, '1B', 9, 'Mixto'),
 (nextval(puest), 9, 2, '1A', 3, 'Comida'),
 (nextval(puest), 9, 3, '1A', 3, 'Comida'),
 (nextval(puest), 9, 4, '2A', 4, 'Comida'),
-(nextval(puest), 9, 5, '2A', 4, 'Comida')
+(nextval(puest), 9, 5, '2A', 4, 'Comida');
