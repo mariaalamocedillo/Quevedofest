@@ -1,2 +1,2 @@
 # QuevedoFest
-En este trabajo se desarrollarán una parte de las tablas necesarias para confeccionar una base de datos para un festival de música.
+En este trabajo se desarrollarán los diferentes modelos necesarios para la confección de una base de datos para la organización de un festival de música. Primero se realizarán los modelos conceptuales, explicando el esquema inicial del que se parte con las especificaciones del proyecto. Seguidamente se confeccionará el modelo relacional y se normalizará el mismo. Tras esto, se desarrollarán los modelos físicos para comenzar la subida de datos de prueba y mostrar consultas que puedan resultar útiles durante la interacción de la base de datos.
