@@ -1,7 +1,8 @@
-#Especificaciones
+# Especificaciones
 
 En el mes de mayo tendrá lugar un festival de música llamado QuevedoFest durante x días.
 Dicho festival recibirá artistas de distintas partes del mundo, que realizarán distintas actuaciones de distintas modalidades musicales; guitarristas, violinistas, cantantes... individuales o grupales.   
+
 Habrá dos escenarios, por lo que podrán actuar varios artistas al mismo tiempo. Cada actuación durará 1 hora si es el principal, y 30 minutos para los teloneros. Los asistentes podrán elegir ver la actuación que deseen.   
 
 Respecto al área artística, se promoverá el uso de las redes sociales para compartir contenido del festival; se creará una cuenta en cada red social cuyo link estará en la página web del festival (y viceversa). En estas cuentas se compartirá contenido de los artistas y los asistentes (tendrá un hashtag), teniendo al menos tres empleados encargados de gestionarlas diariamente.  
@@ -12,6 +13,6 @@ Con los artisas siempre se contactará por teléfono. Entos artistas recebirán 
 
 El espacio usado será alquilado, así como todos los materiales que se usarán. Para el cátering se contratarán empresas externas (una de babidas, otra de comida...), a las cuales se dará un presupuesto de cuánto se le cobrará a diario (pagan por la publicidad y el dinero que ganarán en el festival). Este servicio estará dirigido a los artistas y empleados en sus zonas de trabajo (camerinos; personales o de equipo), así como a los espectadores (un servicio diferente) en las gradas. Se les exigirá un servicio gratuito para los asistentes (una consumición de bebida y comida al día); el resto correrá por parte de los consumidores (teniendo en cuenta que dura varias horas al día, es seguro que comprarán más).      
 
-Cada artista usará una serie de materiales en un escenario concreto en cada actuación; a esto se le denomina escenografía, lo cual deberá quedar registrado para la organización. El material no usado se almacenará en una de las zonas asignadas, para que no estorbe, hasta su uso. El terreno se dividirá en 4 sectores para facilitar el traspaso de información; la A simboliza escenario (incluido backstage) y gradas y la B zona de camerinos y almacenes. La distribución se muestra en la siguiente imagen       
+Cada artista usará una serie de materiales en un escenario concreto en cada actuación; a esto se le denomina escenografía, lo cual deberá quedar registrado para la organización. El material no usado se almacenará en una de las zonas asignadas, para que no estorbe, hasta su uso. El terreno se dividirá en 4 sectores para facilitar el traspaso de información; la A simboliza escenario (incluido backstage) y gradas y la B zona de camerinos, empleados y almacenes. La distribución se muestra en la siguiente imagen       
 
 ![Mapa](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/MAPA%20QF.png)   
