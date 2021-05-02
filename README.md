@@ -9,8 +9,8 @@
    - [X] 3.2. [Normalización/Desnormalización](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20l%C3%B3gico/Modelo%20normalizado.png)
 - [ ] 4. Modelo Físico
    - [X] 4.1. [Diagrama de base de datos (notación "Crow's feet")](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Crows_feet.png)
-   - [X] 4.2. [Creación de tablas y otros objetos](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Tablas%20y%20datos.sql)
-   - [ ] 4.3. [Carga de datos de prueba](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Tablas%20y%20datos.sql)
+   - [X] 4.2. [Creación de tablas y otros objetos]()
+   - [X] 4.3. [Carga de datos de prueba]()
 - [ ] 5. Consultas de la base de datos
    - [ ] 5.1. [Consultas más frecuentes]()
    - [ ] 5.2. [Consultas sencillas]()

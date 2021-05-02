@@ -2,19 +2,6 @@
 --
 -- Tabla: ARTISTA
 --
-CREATE TABLE artista (
-  	id int NOT NULL,
-  	DNI_PAS char(9) NOT NULL DEFAULT '',
-	nombreLegal varchar(30) NOT NULL,
-	nombreArtistico varchar(15) NOT NULL, 
-	fechaNac date NOT NULL,
-	campoArtistico varchar(15),
-	genero varchar(15),
-	telefono bigint DEFAULT NULL,
-	sueldo numeric(10,0),
-  CONSTRAINT artista_pk PRIMARY KEY (id),
-  CONSTRAINT artista_dni_ux UNIQUE (DNI_PAS) 
-);
 CREATE SEQUENCE art
 INCREMENT 1
 START 1;
@@ -44,15 +31,6 @@ INSERT into artista values (nextval(art), 'ZAB211485', 'Austin Richard', 'Post M
 --
 -- Tabla: RRSS_ARTISTA
 --
-CREATE TABLE rrss_artista (
-  	id int NOT NULL,
-  	id_artista int NOT NULL,
-	plataforma varchar(10) NOT NULL,
-	nombre_cuenta varchar(30) NOT NULL,
-  CONSTRAINT rrss_artista_pk PRIMARY KEY (id),
-  CONSTRAINT rrss_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id) 
-);
 CREATE SEQUENCE rrss
 INCREMENT 1
 START 1;
@@ -83,47 +61,28 @@ INSERT into rrss_artista values (nextval(rrss), 1, 'instagram','@PostMalone'),
 (nextval(rrss), 14, 'instagram', '@chinchikats'), 
 --
 -- Tabla: INVITACIONES
---
-CREATE TABLE invitaciones (
-	codigo int NOT NULL,
-	id_artista int NOT NULL,
-	nombre varchar(30) NOT NULL,
-	num_acompanantes int DEFAULT 0,
-	permisos varchar(8) NOT NULL DEFAULT 'Basico',
-  CONSTRAINT invitaciones_pk PRIMARY KEY (codigo, id_artista),
-  CONSTRAINT invitaciones_artista_id_fk FOREIGN KEY (id_artista) 
-    REFERENCES artista(id),
-  CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total'))  
-);
+-
 CREATE SEQUENCE cod_inv
 INCREMENT 1
 START 1;
 INSERT into invitaciones values (nextval(cod_inv), 1, 'Andrea Joe', 1, 'VIP'), 
-								(nextval(cod_inv), 1, 'Joana Wells', 3, 'Basico'), 
-								(nextval(cod_inv), 1, 'John Travis', 1, 'Total'),
-								(nextval(cod_inv), 4, 'Ana Moreno', 1, 'Basico'),
-								(nextval(cod_inv), 2, 'Esther Carrillo', 0, 'VIP'),
-								(nextval(cod_inv), 3, 'Erendira Santillana', 2, 'Total'),
-								(nextval(cod_inv), 3, 'Roger Andreano', 1, 'Basico'),
-								(nextval(cod_inv), 6, 'Juan Antonio Perez', 0, 'Basico'),
-								(nextval(cod_inv), 7, 'Antonio Jesus Moreno', 1, 'Total'),
-								(nextval(cod_inv), 7, 'Epifanía del Señor Tavarez', 2, 'Total'),
-								(nextval(cod_inv), 9, 'Estefanía Torres', 3, 'Basico'),
-								(nextval(cod_inv), 11, 'Sergio Gonzalez', 1, 'Basico'),
-								(nextval(cod_inv), 13, 'Mario Molina', 4, 'Total'),
-								(nextval(cod_inv), 13, 'Sinesio Delgado', 0, 'VIP'),
-
+(nextval(cod_inv), 1, 'Joana Wells', 3, 'Basico'), 
+(nextval(cod_inv), 1, 'John Travis', 1, 'Total'),
+(nextval(cod_inv), 4, 'Ana Moreno', 1, 'Basico'),
+(nextval(cod_inv), 2, 'Esther Carrillo', 0, 'VIP'),
+(nextval(cod_inv), 3, 'Erendira Santillana', 2, 'Total'),
+(nextval(cod_inv), 3, 'Roger Andreano', 1, 'Basico'),
+(nextval(cod_inv), 6, 'Juan Antonio Perez', 0, 'Basico'),
+(nextval(cod_inv), 7, 'Antonio Jesus Moreno', 1, 'Total'),
+(nextval(cod_inv), 7, 'Epifanía del Señor Tavarez', 2, 'Total'),
+(nextval(cod_inv), 9, 'Estefanía Torres', 3, 'Basico'),
+(nextval(cod_inv), 11, 'Sergio Gonzalez', 1, 'Basico'),
+(nextval(cod_inv), 13, 'Mario Molina', 4, 'Total'),
+(nextval(cod_inv), 13, 'Sinesio Delgado', 0, 'VIP')
 
 --
 -- Tabla: CARTEL 	
 -- 
-CREATE TABLE cartel (
-  	id int NOT NULL,
-  	web varchar(60),
-	precio_entrada int,
-	fecha_festival date NOT NULL,
-  CONSTRAINT cartel_pk PRIMARY KEY (id)
-);
 CREATE SEQUENCE cart
 INCREMENT 1
 START 1;
@@ -133,15 +92,6 @@ INSERT into cartel values (nextval(cart), 'https://www.quevedofest.com', 35, 21-
 --
 -- Tabla: ARTISTA_CARTEL
 --
-CREATE TABLE artistas_cartel (
-	id_cartel INT NOT NULL,
-	id_artista INT NOT NULL,
-	CONSTRAINT artista_cartel_pk PRIMARY KEY (id_cartel, id_artista),
-	CONSTRAINT art_cart_cartel_id_fk FOREIGN KEY (id_cartel) 
-        REFERENCES cartel(id),
-	CONSTRAINT art_cart_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id) 
-);
 INSERT into artistas_cartel values (1, 1), (1, 2), (1, 4), (1, 7), 
 	(2, 1), (2, 5), (2, 6), (2, 8), (2, 9), (2, 11), (2, 3), (2, 16), 
 	(2, 15), (2, 10), (3, 1), (3, 3), (3, 10), (3, 7), (3, 4), (3, 9)
@@ -149,15 +99,6 @@ INSERT into artistas_cartel values (1, 1), (1, 2), (1, 4), (1, 7),
 --
 -- Tabla: AGENDA
 --
-CREATE TABLE agenda (
-  	cod_actuacion int NOT NULL,
-	id_artista int NOT NULL,
-	fecha date NOT NULL,
-	horario time,
-  CONSTRAINT agenda_pk PRIMARY KEY (cod_actuacion),
-	CONSTRAINT agenda_telonero_id_fk FOREIGN KEY (id_artista) 
-    REFERENCES artista(id)
-);
 CREATE SEQUENCE age
 INCREMENT 1
 START 1;
@@ -186,15 +127,6 @@ INSERT into agenda values (nextval(age), 5, '20-05-2021', '19:45:00'),
 --
 -- Tabla: AGENDA_CARTEL
 --
-CREATE TABLE agenda_cartel (
-	id_cartel INT NOT NULL,
-	cod_actuacion INT NOT NULL,
-	CONSTRAINT agenda_cartel_pk PRIMARY KEY (id_cartel, cod_actuacion),
-	CONSTRAINT age_cart_cartel_id_fk FOREIGN KEY (id_cartel) 
-        REFERENCES cartel(id),
-	CONSTRAINT age_cart_agenda_id_fk FOREIGN KEY (cod_actuacion) 
-        REFERENCES agenda(cod_actuacion) 
-);
 INSERT into agenda values (1, 8), (1, 20), (1, 14), (1, 7), (1, 11), (2, 8), 
 (2, 20), (2, 1), (2, 6), (2, 4), (2, 3), (2, 17),
 (2, 2), (2, 5), (2, 9), (2, 13), (2, 18), (3, 20), 
@@ -204,15 +136,6 @@ INSERT into agenda values (1, 8), (1, 20), (1, 14), (1, 7), (1, 11), (2, 8),
 --
 -- Tabla: ESPACIO
 --
-CREATE TABLE espacio (
-	id int NOT NULL,
-	tipo varchar(12) NOT NULL,
-	empleado_encargado varchar(30) NOT NULL, --el nombre del encargado
-	localizacion char(2) NOT NULL,
-  	CONSTRAINT espacio_pk PRIMARY KEY (id),
-    CONSTRAINT espacio_tipo_ck CHECK (tipo IN ('Escenario','Backstage','Camerino','Gradas', 'Almacen')),
-    CONSTRAINT espacio_localizacion_ck CHECK (localizacion IN ('1A', '2A', '1B', '2B'))
-);
 CREATE SEQUENCE esp
 INCREMENT 1
 START 1;
@@ -242,31 +165,12 @@ INSERT into espacio values ( nextval(esp), 'Escenario', 'Ana Rodriguez', '1A'),
 --
 -- Tabla: CAMERINO_ARTISTA
 --
-CREATE TABLE camerino_artista (
-	id_camerino INT NOT NULL,
-	id_artista INT NOT NULL,
-	CONSTRAINT camerino_artista_pk PRIMARY KEY (id_camerino, id_artista),
-	CONSTRAINT camerino_artista_espacio_id_fk FOREIGN KEY (id_camerino) 
-        REFERENCES espacio(id),
-	CONSTRAINT camerino_artista_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id)
-);
 INSERT into espacio values (9, 4), (10, 2), (11, 8), (13, 13), (14, 1), (15, 10), 
 (17, 6), (18, 14), (19, 3), (20, 12)
 
 --
 -- Tabla: ESCENOGRAFÍA 
 --
-CREATE TABLE escenografia (
-	id int NOT NULL,
-  	id_espacio int NOT NULL,
-  	cod_actuacion int NOT NULL,
-  	CONSTRAINT escenografia_pk PRIMARY KEY (id),
-	CONSTRAINT escenografia_espacio_id_fk FOREIGN KEY (id_espacio) 
-    	REFERENCES espacio(id),
-	CONSTRAINT escenografia_cod_actuacion_fk FOREIGN KEY (cod_actuacion) 
-    	REFERENCES agenda(cod_actuacion)
-);
 CREATE SEQUENCE escg
 INCREMENT 1
 START 1;
@@ -295,21 +199,6 @@ INSERT into espacio values (nextval(escg), 1, 1),
 --
 -- Tabla: MATERIAL
 --
-CREATE TABLE material (
-	id int NOT NULL,
-	nombre varchar(20) NOT NULL,
-	tipo varchar(12) NOT NULL DEFAULT 'Otros',
-	precio numeric(10,0) DEFAULT 0,		--por unidad
-	inicio_disponibilidad TIMESTAMP NOT NULL, --TIMESTAMP '2004-10-19 10:23:54'
-	fin_disponibilidad TIMESTAMP,
-	proveedor varchar(20) NOT NULL,
-	cantidad int NOT NULL DEFAULT 1, --mínimo ordenarán una unidad
-	almacenaje char(2) NOT NULL DEFAULT 'EU',
-	descripcion varchar(50),
-  	CONSTRAINT material_pk PRIMARY KEY (id),
-    CONSTRAINT material_tipo_ck CHECK (tipo IN ('Iluminacion','Sonido','Atrezo','Imagen','Grabacion','Otros')),
-    CONSTRAINT material_almacen_ck CHECK (almacenaje IN ('1B', '2B', 'EU'))--EU indica que está en uso(por ejemplo, material básico de los escenarios, que no se puede almacenar porque debe estar siempre montado)
-);
 CREATE SEQUENCE mat
 INCREMENT 1
 START 1;
@@ -334,21 +223,9 @@ INSERT into material values (nextval(mat), 'Platformas escenario', 'Otros', 50, 
 (nextval(mat), 'Slider MD-500', 'Grabacion', 300, '2021-05-19 12:00:00', '2021-05-23 12:00:00', 'Canon', 4, 'EU', 'Carril motorizado para cámara de video'),
 (nextval(mat), 'Maquina humo', 'Atrezo', 300, '2021-05-19 20:00:00', '2021-05-23 06:00:00', 'Estatella SA', 5, '1B', 'Máquina de humo para escenario'),
 (nextval(mat), 'LEDS', 'Atrezo', 5, '2021-05-19 20:00:00', NULL, 'Estatella SA', 150, '1B', 'LEDS de colores para escenario; baras de 2 metros'),
-
-
 --
 -- Tabla: MATERIAL_ESCENOGRAFÍA 
 --
-CREATE TABLE material_escenografia (
-	id_material int NOT NULL,
-	unidades int NOT NULL,
-	id_escenografia int NOT NULL,
-	CONSTRAINT material_escenografia_pk PRIMARY KEY (id_material, id_escenografia),
-	  CONSTRAINT mat_esc_material_id_fk FOREIGN KEY (id_material) 
-    REFERENCES material (id),
-	  CONSTRAINT mat_esc_escenografia_id_fk FOREIGN KEY (id_escenografia) 
-    REFERENCES escenografia (id)
-);
 INSERT into material_escenografia values (7, 250, 2), (8, 2, 6), 
 (8, 2, 14), (11, 4, 8), 
 (10, 25, 14), (10, 25, 8), 
@@ -363,13 +240,6 @@ INSERT into material_escenografia values (7, 250, 2), (8, 2, 6),
 --
 -- Tabla: CATERING
 --
-CREATE TABLE catering (
-	id INT NOT NULL, 
-	empresa_encargada varchar(10) NOT NULL,
-	presupuesto numeric(10,0) NOT NULL,
-	servicio_gratuito varchar(20),
-	CONSTRAINT catering_pk PRIMARY KEY (id)
-);
 CREATE SEQUENCE cat
 INCREMENT 1
 START 1;
@@ -387,65 +257,49 @@ INSERT into catering values ( nextval(cat), 'Ismar Group SI', 9500, '1 botella v
 --
 -- Tabla: PUESTOS_CATERING
 --
-CREATE TABLE puesto_catering (
-	id INT NOT NULL, 
-	id_catering INT NOT NULL,
-	num_puesto INT NOT NULL,
-	lugar_asignado char(2) NOT NULL,
-		id_espacio INT NOT NULL,
-	servicio varchar(10) NOT NULL,
-	CONSTRAINT puesto_catering_pk PRIMARY KEY (id),
-	CONSTRAINT puesto_catering_catering_id_fk FOREIGN KEY (id_catering) 
-        REFERENCES catering(id),
-    CONSTRAINT puesto_catering_lugar_ck CHECK (lugar_asignado IN ('1A', '2A', '1B', '2B')),
-	CONSTRAINT espacio_puesto_espacio_id_fk FOREIGN KEY (id_espacio) 
-        REFERENCES espacio(id),
-	CONSTRAINT puesto_catering_servicio_ck CHECK (servicio IN ('Comida', 'Bebida', 'Mixto'))
-);
 CREATE SEQUENCE puest
 INCREMENT 1
 START 1;
 
-INSERT into puesto_catering values (nextval(puest), 1, 1, '1B', 'Mixto'),
-(nextval(puest), 2, 1, '1B', 'Comida'),
-(nextval(puest), 2, 2, '2B', 'Comida'),
-(nextval(puest), 5, 1, '2B', 'Mixto'),
-(nextval(puest), 6, 1, '1A', 'Comida'),
-(nextval(puest), 6, 2, '1A', 'Comida'),
-(nextval(puest), 6, 3, '1A', 'Comida'),
-(nextval(puest), 6, 4, '1A', 'Comida'),
-(nextval(puest), 6, 5, '1A', 'Comida'),
-(nextval(puest), 6, 6, '2A', 'Comida'),
-(nextval(puest), 6, 7, '2A', 'Comida'),
-(nextval(puest), 6, 8, '2A', 'Comida'),
-(nextval(puest), 6, 9, '2A', 'Comida'),
-(nextval(puest), 6, 10, '2A', 'Comida'),
-(nextval(puest), 7, 1, '1A', 'Bebida'),
-(nextval(puest), 7, 2, '1A', 'Bebida'),
-(nextval(puest), 7, 3, '1A', 'Bebida'),
-(nextval(puest), 7, 4, '1A', 'Bebida'),
-(nextval(puest), 7, 5, '1A', 'Bebida'),
-(nextval(puest), 7, 6, '2A', 'Bebida'),
-(nextval(puest), 7, 7, '2A', 'Bebida'),
-(nextval(puest), 7, 8, '2A', 'Bebida'),
-(nextval(puest), 7, 9, '2A', 'Bebida'),
-(nextval(puest), 7, 10, '2A', 'Bebida'),
-(nextval(puest), 8, 1, '1A', 'Bebida'),
-(nextval(puest), 8, 2, '1A', 'Bebida'),
-(nextval(puest), 8, 3, '2A', 'Bebida'),
-(nextval(puest), 8, 4, '2A', 'Bebida'),
-(nextval(puest), 9, 1, '1A', 'Comida'),
-(nextval(puest), 9, 2, '1A', 'Comida'),
-(nextval(puest), 9, 3, '1A', 'Comida'),
-(nextval(puest), 9, 4, '2A', 'Comida'),
-(nextval(puest), 9, 5, '2A', 'Comida')
---
--- Tabla: ESPACIO_PUESTO
---
-CREATE TABLE espacio_puesto (
-	id_puesto INT NOT NULL,
-	id_espacio INT NOT NULL,
-	CONSTRAINT espacio_puesto_espacio_id_fk FOREIGN KEY (id_espacio) 
-        REFERENCES espacio(id)
-);
-
+INSERT into puesto_catering values (nextval(puest), 1, 1, '1B', 9, 'Mixto'),
+(nextval(puest), 1, 1, '1B', 10, 'Mixto'),
+(nextval(puest), 1, 1, '1B', 13, 'Mixto'),
+(nextval(puest), 2, 1, '1B', 11, 'Comida'),
+(nextval(puest), 2, 1, '1B', 14, 'Comida'),
+(nextval(puest), 2, 1, '1B', 12, 'Mixto'),
+(nextval(puest), 1, 1, '2B', 21, 'Mixto'),
+(nextval(puest), 1, 1, '2B', 19, 'Mixto'),
+(nextval(puest), 2, 2, '2B', 20, 'Comida'),
+(nextval(puest), 2, 2, '2B', 18, 'Comida'),
+(nextval(puest), 2, 2, '2B', 16, 'Comida'),
+(nextval(puest), 5, 1, '2B', 17, 'Mixto'),
+(nextval(puest), 5, 1, '2B', 15, 'Mixto'),
+(nextval(puest), 6, 1, '1A', 3, 'Comida'),
+(nextval(puest), 6, 2, '1A', 3, 'Comida'),
+(nextval(puest), 6, 3, '1A', 3, 'Comida'),
+(nextval(puest), 6, 4, '1A', 3, 'Comida'),
+(nextval(puest), 6, 5, '1A', 5, 'Comida'),
+(nextval(puest), 6, 6, '2A', 4, 'Comida'),
+(nextval(puest), 6, 7, '2A', 4, 'Comida'),
+(nextval(puest), 6, 8, '2A', 4, 'Comida'),
+(nextval(puest), 6, 9, '2A', 4, 'Comida'),
+(nextval(puest), 6, 10, '2A', 6, 'Comida'),
+(nextval(puest), 7, 1, '1A', 3, 'Bebida'),
+(nextval(puest), 7, 2, '1A', 3, 'Bebida'),
+(nextval(puest), 7, 3, '1A', 3, 'Bebida'),
+(nextval(puest), 7, 4, '1A', 3, 'Bebida'),
+(nextval(puest), 7, 5, '1A', 5, 'Bebida'),
+(nextval(puest), 7, 6, '2A', 4, 'Bebida'),
+(nextval(puest), 7, 7, '2A', 4, 'Bebida'),
+(nextval(puest), 7, 8, '2A', 4, 'Bebida'),
+(nextval(puest), 7, 9, '2A', 5, 'Bebida'),
+(nextval(puest), 7, 10, '2A', 6, 'Bebida'),
+(nextval(puest), 8, 1, '1A', 3, 'Bebida'),
+(nextval(puest), 8, 2, '1A', 5, 'Bebida'),
+(nextval(puest), 8, 3, '2A', 4, 'Bebida'),
+(nextval(puest), 8, 4, '2A', 6, 'Bebida'),
+(nextval(puest), 9, 1, '1A', 3, 'Comida'),
+(nextval(puest), 9, 2, '1A', 3, 'Comida'),
+(nextval(puest), 9, 3, '1A', 3, 'Comida'),
+(nextval(puest), 9, 4, '2A', 4, 'Comida'),
+(nextval(puest), 9, 5, '2A', 4, 'Comida')
