@@ -1,7 +1,4 @@
 # Consultas frecuentes
-Mostrar los preparativos necesarios para cada actuación el día 20; escenografía, artista(nombre legal y tlf contacto), material, escenario...
-```sql
-```
 Mostrar la información completa que se mostrará en cada cartel; fechas, artistas, precio, web...
 ```sql
 ```
@@ -20,3 +17,4 @@ Mostar los puestos de cátering con los responsables de la zona donde se encuent
 Mostrar los servicios gratuitos por sector, con la empresa encargada y su presupuesto
 ```sql
 ```
+

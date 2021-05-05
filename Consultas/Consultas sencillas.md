@@ -1,7 +1,9 @@
 # Consultas sencillas
-Mostrar un listado con los artistas que no son españoles
+Mostrar un listado con los artistas que no son españoles (que la primera letra del campo dni/pasaporte sea una letra)
 ```sql
-
+SELECT nombrelegal, dni_pas
+FROM artista
+WHERE substring(dni_pas from 1 for 1) ~ '[^0-9]';
 ```
 Mostar el artista más jóven (que no sea una banda) y el más mayor
 ```sql
@@ -40,6 +42,13 @@ SELECT nombre, tipo, descripcion, proveedor, precio*cantidad as coste
 from material
 where fin_disponibilidad IS NULL;
 ```
-
+Mostrar las actuaciones que solo utilizan material de patrocinadores, con la empresa que patrocina
+```sql
+SELECT eg.cod_actuacion, m.nombre, m.tipo, m.precio, m.proveedor
+from escenografia eg
+	JOIN material_escenografia me ON eg.id = me.id_escenografia
+	JOIN material m ON me.id_material = m.id
+WHERE m.precio IS NULL;
+```
 ```sql
 ```
