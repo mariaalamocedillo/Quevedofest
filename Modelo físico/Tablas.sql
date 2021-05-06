@@ -72,7 +72,7 @@ CREATE TABLE agenda (
 	fecha date NOT NULL,
 	horario time,
   CONSTRAINT agenda_pk PRIMARY KEY (cod_actuacion),
-	CONSTRAINT agenda_telonero_id_fk FOREIGN KEY (id_artista) 
+	CONSTRAINT agenda_artista_id_fk FOREIGN KEY (id_artista) 
     REFERENCES artista(id)
 );
 --
@@ -169,7 +169,7 @@ CREATE TABLE catering (
 	CONSTRAINT catering_pk PRIMARY KEY (id)
 );
 --
--- Tabla: PUESTOS_CATERING
+-- Tabla: PUESTO_CATERING
 --
 CREATE TABLE puesto_catering (
 	id INT NOT NULL, 

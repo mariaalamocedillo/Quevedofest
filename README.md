@@ -11,11 +11,11 @@
    - [X] 4.1. [Diagrama de base de datos (notación "Crow's feet")](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Crows_feet.png)
    - [X] 4.2. [Creación de tablas y otros objetos](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Tablas.sql)
    - [X] 4.3. [Carga de datos de prueba](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20f%C3%ADsico/Datos%20de%20prueba.sql)
-- [ ] 5. Consultas de la base de datos
-   - [ ] 5.1. [Consultas más frecuentes](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20frecuentes.md)
-   - [ ] 5.2. [Consultas sencillas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20sencillas.md)
-   - [ ] 5.3. [Consultas de agregación y resumen](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20de%20agregaci%C3%B3n%20y%20resumen.md)
-   - [ ] 5.4. [Consultas con subconsultas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20con%20subconsultas.md)
+- [X] 5. Consultas de la base de datos
+   - [X] 5.1. [Consultas más frecuentes](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20frecuentes.md)
+   - [X] 5.2. [Consultas sencillas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20sencillas.md)
+   - [X] 5.3. [Consultas de agregación y resumen](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20de%20agregaci%C3%B3n%20y%20resumen.md)
+   - [X] 5.4. [Consultas con subconsultas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20con%20subconsultas.md)
 - [ ] 6. Vistas, secuencias e índices
 - [ ] 7. Scripts en PL/pgSQL
 - [ ] 8. Extras
