@@ -9,6 +9,11 @@ GROUP BY eg.cod_actuacion
 HAVING eg.cod_actuacion = 14
 ORDER BY eg.cod_actuacion;
 ```
+Mostrar el número total de invitados de artistas que habrá
+```sql
+SELECT SUM(num_acompanantes) + COUNT(*) as "Total de invitados"
+FROM invitaciones;
+```
 Mostrar las tres actuaciones más caras (teniendo en cuenta el precio del material y el sueldo del artista)
 ```sql
 SELECT eg.cod_actuacion, SUM(m.precio*me.unidades) as "coste del material"
@@ -20,16 +25,44 @@ HAVING SUM(m.precio*me.unidades) IS NOT NULL
 ORDER BY "coste del material" DESC
 LIMIT 3;
 ```
-Mostrar los preparativos necesarios para cada actuación el día 20; artista(nombre legal y tlf contacto), material, escenario (con su empleado encargado)...
-NO ESTÁ TERMINADAAAAAAAAAAAAAAAAA
+Mostrar el artista principal, el telonero y la banda  que más va a cobrar (teniendo en cuenta el numero de actuaciones y su sueldo por actuacion)
 ```sql
-SELECT ar.nombrelegal artista, ar.telefono, ep.id as "id escenario", ep.empleado_encargado encargado, ag.horario, m.nombre material
-from escenografia eg
-	JOIN agenda ag ON ag.cod_actuacion = eg.cod_actuacion
-	JOIN artista ar ON ar.id = ag.id_artista
-	JOIN espacio ep ON eg.id_espacio = ep.id
-	JOIN material_escenografia me ON eg.id = me.id_escenografia
-	JOIN material m ON m.id = me.id_material
-where extract(day from ag.fecha) = 20
-GROUP BY GROUPING SETS (ar.nombrelegal, ar.telefono, ag.horario, ep.id, ep.empleado_encargado),  (m.nombre);
+--Principal que más cobra
+SELECT nombrelegal, nombreartistico, sueldo
+from artista
+WHERE sueldo = (SELECT max(sueldo) from artista) AND campoartistico LIKE 'Banda';
+--Banda que más cobra
+SELECT nombrelegal, nombreartistico, sueldo
+from artista
+WHERE sueldo = (SELECT max(sueldo) from artista) AND campoartistico NOT LIKE 'Banda';
+--Telonero que más cobra
+SELECT nombrelegal, nombreartistico, sueldo
+from artista
+WHERE sueldo = (SELECT max(sueldo) from artista where campoartistico iLIKE 'telonero');
+```
+Mostrar la media del coste del material y la suma total
+```sql
+SELECT ROUND(AVG(precio*cantidad)) as "media coste", SUM(precio*cantidad) as "total"
+FROM material;
+```
+Mostrar el coste total de los materiales agrupados por tipo que no proveen patrocinadores
+```sql
+SELECT tipo, SUM(precio*cantidad) coste
+from material
+WHERE precio IS NOT NULL
+GROUP BY tipo
+order by tipo;
+```
+Mostrar los patrocinadores que dan más de un material
+```sql
+SELECT proveedor 
+from material 
+where precio is null
+group by proveedor
+having count(*) > 1;
+```
+Mostar la edad media de los artistas contratados
+```sql
+SELECT AVG(EXTRACT(year from AGE(fechanac)))
+FROM artista;
 ```

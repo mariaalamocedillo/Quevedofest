@@ -5,17 +5,6 @@ SELECT nombrelegal, dni_pas
 FROM artista
 WHERE substring(dni_pas from 1 for 1) ~ '[^0-9]';
 ```
-Mostar el artista más jóven (que no sea una banda) y el más mayor
-```sql
-SELECT nombrelegal, nombreartistico, fechanac
-from artista
-where fechanac IN ((SELECT min(fechanac)
-                from artista
-                where campoartistico not like 'Banda'),
-                (SELECT max(fechanac)
-                from artista
-                where campoartistico not like 'Banda'));
-```
 Mostrar una lista con los artistas ordenado por sueldo y por edad (no incluir las bandas)
 ```sql
 SELECT nombrelegal, nombreartistico, extract(year from age(fechanac)), sueldo
@@ -50,5 +39,11 @@ from escenografia eg
 	JOIN material m ON me.id_material = m.id
 WHERE m.precio IS NULL;
 ```
+Mostrar los artistas que aparecen en cada cartel y tienen redes sociales
 ```sql
+SELECT DISTINCT(a.nombrelegal), ac.id_cartel
+FROM artista a
+RIGHT JOIN artistas_cartel ac ON ac.id_artista = a.id
+JOIN rrss_artista rs ON rs.id_artista = a.id
+order by ac.id_cartel;
 ```
