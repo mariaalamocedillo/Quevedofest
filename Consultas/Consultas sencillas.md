@@ -47,3 +47,9 @@ RIGHT JOIN artistas_cartel ac ON ac.id_artista = a.id
 JOIN rrss_artista rs ON rs.id_artista = a.id
 order by ac.id_cartel;
 ```
+Mostrar el material que será usado por empleados
+```sql
+SELECT *
+FROM material 
+WHERE descripcion ILIKE '%técnicos%' OR descripcion ILIKE '%empleados%';
+```

@@ -45,7 +45,7 @@ GROUP BY pc.lugar_asignado, c.servicio_gratuito, c.presupuesto;
 ```
 Mostar cada artista con su camerino asignado, así como los camerinos no asignados y los artistas sin camerinos
 ```sql
-SELECT COALESCE(a.nombrelegal, 'Sin asignar') artista, COALESCE(e.id::character, 'Sin camerino') id_camerino
+SELECT COALESCE(a.nombrelegal, 'Sin asignar') artista, COALESCE(e.id::text, 'Sin camerino') id_camerino
 FROM camerino_artista c
 	FULL OUTER JOIN artista a  ON c.id_artista = a.id
 	FULL OUTER JOIN espacio e ON e.id = c.id_camerino AND e.tipo = 'Camerino';
