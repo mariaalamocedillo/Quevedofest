@@ -3,7 +3,7 @@ Procedimiento que nos permite cambiar la fecha de una actuación
 ```sql
 create or replace procedure cambiar_fecha(
 	p_cod_actuacion agenda.cod_actuacion%type,
-   	p_fecha agenda.fecha%type
+   p_fecha agenda.fecha%type
 )
 language plpgsql
 as
@@ -171,7 +171,7 @@ begin
 end;
 $$
 ```
-Función que devuelve el número de puestos que hay en un espacio, dado si id
+Función que devuelve el número de puestos que hay en un espacio, dado su identificador
 ```sql
 create or replace function puestos_espacio(
 	p_id_espacio espacio.id%type

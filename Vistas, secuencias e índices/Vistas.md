@@ -181,3 +181,15 @@ FROM catering c
 	JOIN puesto_catering pc ON pc.id_catering = c.id
 	JOIN espacio e ON pc.id_espacio = e.id;
 ```
+Mostrar los costes de las actuacion
+```sql
+CREATE OR REPLACE VIEW costes_actuaciones AS
+SELECT eg.cod_actuacion, COALESCE(SUM(m.precio*me.unidades)::text, 'Sin material') as "coste del material",
+		a.sueldo as "sueldo artista", COALESCE(SUM(m.precio*me.unidades) + a.sueldo, a.sueldo) total
+from escenografia eg
+	FULL OUTER JOIN material_escenografia me ON eg.id = me.id_escenografia
+	FULL OUTER JOIN material m ON me.id_material = m.id
+	JOIN agenda ag ON eg.cod_actuacion = ag.cod_actuacion
+	JOIN artista a ON ag.id_artista = a.id
+GROUP BY eg.cod_actuacion, a.sueldo;
+```

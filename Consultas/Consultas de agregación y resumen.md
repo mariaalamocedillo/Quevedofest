@@ -16,13 +16,15 @@ FROM invitaciones;
 ```
 Mostrar las tres actuaciones más caras (teniendo en cuenta el precio del material y el sueldo del artista)
 ```sql
-SELECT eg.cod_actuacion, SUM(m.precio*me.unidades) as "coste del material"
+SELECT eg.cod_actuacion, COALESCE(SUM(m.precio*me.unidades)::text, 'Sin material') as "coste del material",
+		a.sueldo as "sueldo artista", COALESCE(SUM(m.precio*me.unidades) + a.sueldo, a.sueldo) as "total"
 from escenografia eg
-	JOIN material_escenografia me ON eg.id = me.id_escenografia
-	JOIN material m ON me.id_material = m.id
-GROUP BY eg.cod_actuacion
-HAVING SUM(m.precio*me.unidades) IS NOT NULL
-ORDER BY "coste del material" DESC
+	FULL OUTER JOIN material_escenografia me ON eg.id = me.id_escenografia
+	FULL OUTER JOIN material m ON me.id_material = m.id
+	JOIN agenda ag ON eg.cod_actuacion = ag.cod_actuacion
+	JOIN artista a ON ag.id_artista = a.id
+GROUP BY eg.cod_actuacion, a.sueldo
+ORDER BY "total" DESC
 LIMIT 3;
 ```
 Mostrar el artista principal, el telonero y la banda  que más va a cobrar (teniendo en cuenta el numero de actuaciones y su sueldo por actuacion)
