@@ -16,8 +16,8 @@
    - [X] 5.2. [Consultas sencillas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20sencillas.md)
    - [X] 5.3. [Consultas de agregación y resumen](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20de%20agregaci%C3%B3n%20y%20resumen.md)
    - [X] 5.4. [Consultas con subconsultas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20con%20subconsultas.md)
-- [X] 6. Vistas, secuencias e índices
-- [ ] 7. Scripts en PL/pgSQL
+- [X] 6. [Vistas, secuencias e índices](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Vistas%2C%20secuencias%20e%20%C3%ADndices/Vistas.md)
+- [X] 7. [Scripts en PL/pgSQL](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Procedimientos%20y%20funciones/Procedimientos_funciones.md)
 - [ ] 8. Extras
    - [ ] 8.1. Cursores
    - [ ] 8.2. Prototipo de interfaz de usuario
