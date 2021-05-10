@@ -25,7 +25,7 @@ CREATE TABLE rrss_artista (
 	nombre_cuenta varchar(30) NOT NULL,
   CONSTRAINT rrss_artista_pk PRIMARY KEY (id),
   CONSTRAINT rrss_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id) 
+        REFERENCES artista(id) ON DELETE CASCADE
 );
 --
 -- Tabla: INVITACIONES
@@ -38,7 +38,7 @@ CREATE TABLE invitaciones (
 	permisos varchar(8) NOT NULL DEFAULT 'Basico',
   CONSTRAINT invitaciones_pk PRIMARY KEY (codigo, id_artista),
   CONSTRAINT invitaciones_artista_id_fk FOREIGN KEY (id_artista) 
-    REFERENCES artista(id),
+    REFERENCES artista(id)  ON DELETE CASCADE,
   CONSTRAINT invitaciones_permisos_ck CHECK (permisos IN ('Basico','VIP','Total'))  
 );
 --
@@ -59,9 +59,9 @@ CREATE TABLE artistas_cartel (
 	id_artista INT NOT NULL,
 	CONSTRAINT artista_cartel_pk PRIMARY KEY (id_cartel, id_artista),
 	CONSTRAINT art_cart_cartel_id_fk FOREIGN KEY (id_cartel) 
-        REFERENCES cartel(id),
+        REFERENCES cartel(id) ON DELETE CASCADE,
 	CONSTRAINT art_cart_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id) 
+        REFERENCES artista(id) ON DELETE CASCADE 
 );
 --
 -- Tabla: AGENDA
@@ -73,7 +73,7 @@ CREATE TABLE agenda (
 	horario time,
   CONSTRAINT agenda_pk PRIMARY KEY (cod_actuacion),
 	CONSTRAINT agenda_artista_id_fk FOREIGN KEY (id_artista) 
-    REFERENCES artista(id)
+    REFERENCES artista(id) ON DELETE CASCADE
 );
 --
 -- Tabla: AGENDA_CARTEL
@@ -83,9 +83,9 @@ CREATE TABLE agenda_cartel (
 	cod_actuacion INT NOT NULL,
 	CONSTRAINT agenda_cartel_pk PRIMARY KEY (id_cartel, cod_actuacion),
 	CONSTRAINT age_cart_cartel_id_fk FOREIGN KEY (id_cartel) 
-        REFERENCES cartel(id),
+        REFERENCES cartel(id) ON DELETE CASCADE,
 	CONSTRAINT age_cart_agenda_id_fk FOREIGN KEY (cod_actuacion) 
-        REFERENCES agenda(cod_actuacion) 
+        REFERENCES agenda(cod_actuacion) ON DELETE CASCADE
 );
 
 --ÁREA DE PRODUCCIÓN
@@ -109,9 +109,9 @@ CREATE TABLE camerino_artista (
 	id_artista INT NOT NULL,
 	CONSTRAINT camerino_artista_pk PRIMARY KEY (id_camerino, id_artista),
 	CONSTRAINT camerino_artista_espacio_id_fk FOREIGN KEY (id_camerino) 
-        REFERENCES espacio(id),
+        REFERENCES espacio(id) ON DELETE CASCADE,
 	CONSTRAINT camerino_artista_artista_id_fk FOREIGN KEY (id_artista) 
-        REFERENCES artista(id)
+        REFERENCES artista(id) ON DELETE CASCADE
 );
 --
 -- Tabla: ESCENOGRAFÍA 
@@ -122,9 +122,9 @@ CREATE TABLE escenografia (
   	cod_actuacion int NOT NULL,
   	CONSTRAINT escenografia_pk PRIMARY KEY (id),
 	CONSTRAINT escenografia_espacio_id_fk FOREIGN KEY (id_espacio) 
-    	REFERENCES espacio(id),
+    	REFERENCES espacio(id) ON DELETE CASCADE,
 	CONSTRAINT escenografia_cod_actuacion_fk FOREIGN KEY (cod_actuacion) 
-    	REFERENCES agenda(cod_actuacion)
+    	REFERENCES agenda(cod_actuacion) ON DELETE CASCADE
 );
 --
 -- Tabla: MATERIAL
@@ -154,9 +154,9 @@ CREATE TABLE material_escenografia (
 	id_escenografia int NOT NULL,
 	CONSTRAINT material_escenografia_pk PRIMARY KEY (id_material, id_escenografia),
 	  CONSTRAINT mat_esc_material_id_fk FOREIGN KEY (id_material) 
-    REFERENCES material (id),
+    REFERENCES material (id) ON DELETE CASCADE,
 	  CONSTRAINT mat_esc_escenografia_id_fk FOREIGN KEY (id_escenografia) 
-    REFERENCES escenografia (id)
+    REFERENCES escenografia (id) ON DELETE CASCADE
 );
 --
 -- Tabla: CATERING
@@ -180,9 +180,9 @@ CREATE TABLE puesto_catering (
 	servicio varchar(10) NOT NULL,
 	CONSTRAINT puesto_catering_pk PRIMARY KEY (id),
 	CONSTRAINT puesto_catering_catering_id_fk FOREIGN KEY (id_catering) 
-        REFERENCES catering(id),
+        REFERENCES catering(id) ON DELETE CASCADE,
     CONSTRAINT puesto_catering_lugar_ck CHECK (lugar_asignado IN ('1A', '2A', '1B', '2B')),
 	CONSTRAINT espacio_puesto_espacio_id_fk FOREIGN KEY (id_espacio) 
-        REFERENCES espacio(id),
+        REFERENCES espacio(id) ON DELETE CASCADE,
 	CONSTRAINT puesto_catering_servicio_ck CHECK (servicio IN ('Comida', 'Bebida', 'Mixto'))
 );

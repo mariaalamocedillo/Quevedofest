@@ -4,13 +4,13 @@ Feature: Gestión de carteles
     
         Scenario: crear cartel que no existe para una fecha
             Given una fecha del festival
-              And un carteles que no existe en el sistema
+              And un cartel que no existe en el sistema
              When añado el cartel
              Then el cartel queda añadido
 
         Scenario: crear cartel que ya existe para una fecha
             Given una fecha del festival
-              And un carteles que ya existe en el sistema
+              And un cartel que ya existe en el sistema
              When añado el cartel
              Then da error de que el cartel ya existe para esa fecha
 
@@ -25,4 +25,3 @@ Feature: Gestión de carteles
               And un artista que no existe en el sistema
              When añado el artista al cartel
              Then da error de que el artista no existe
-
