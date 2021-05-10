@@ -152,3 +152,41 @@ END
 $$
 LANGUAGE 'plpgsql';
 ```
+Borrar un material de todas las tablas dado su identificador
+```sql
+create or replace procedure borrar_material (
+		p_id_material material.id%type
+)
+language plpgsql
+as
+$$
+declare
+	v_id_material material.id%type;
+	v_mat_escenog material_escenografia%rowtype;
+	cur_mat_escenog cursor for SELECT * FROM material_escenografia;
+begin
+   -- comprobamos que exista el material
+   select id from material
+   into v_id_material
+   where id = p_id_material;
+   --dado que tenemos establecido el borrado en cascada, antes debemos eliminar el material del resto de tablas(material_escenografia)
+	for v_mat_escenog in cur_mat_escenog loop
+		if v_mat_escenog.id_material = p_id_material then
+			delete from material_escenografia
+			where id_material = p_id_material;
+		end if;
+	end loop;   
+	raise notice 'Material eliminado del resto de relaciones';
+	-- borramos el material
+   delete from material
+   where id = p_id_material;
+   raise notice 'Material eliminado correctamente';
+   -- capturamos las excepciones
+   exception
+      when no_data_found then 
+         raise notice 'El material % no existe', p_id_material;
+      when others then
+         raise exception 'Se ha producido en un error inesperado';
+end;
+$$
+```

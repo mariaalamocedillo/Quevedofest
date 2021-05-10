@@ -31,6 +31,13 @@ SELECT nombre, tipo, descripcion, proveedor, precio*cantidad as coste
 from material
 where fin_disponibilidad IS NULL;
 ```
+Mostrar las empresas de catering cuyo presupuesto esté entre 7000 y 14000 euros y ofrecen un servicio gratuito
+```sql
+SELECT *
+from catering
+where presupuesto BETWEEN 7000 AND 14000
+		AND servicio_gratuito IS NOT NULL;
+```
 Mostrar las actuaciones que solo utilizan material de patrocinadores, con la empresa que patrocina
 ```sql
 SELECT eg.cod_actuacion, m.nombre, m.tipo, m.precio, m.proveedor

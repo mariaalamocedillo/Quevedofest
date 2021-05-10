@@ -44,8 +44,13 @@ WHERE sueldo = (SELECT max(sueldo) from artista where campoartistico iLIKE 'telo
 ```
 Mostrar la media del coste del material y la suma total
 ```sql
-SELECT ROUND(AVG(precio*cantidad)) as "media coste", SUM(precio*cantidad) as "total"
+SELECT TRUNC(AVG(precio*cantidad), 2) as "media coste", SUM(precio*cantidad) as "total"
 FROM material;
+```
+Mostrar el coste medio de sueldo de los artistas redondeado a la alza
+```sql
+SELECT CONCAT(CEIL(AVG(sueldo)), '€') as "Sueldo medio"
+FROM artista;
 ```
 Mostrar el coste total de los materiales agrupados por tipo que no proveen patrocinadores
 ```sql

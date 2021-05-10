@@ -19,7 +19,7 @@
 - [X] 6. [Vistas, secuencias e índices](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Vistas%2C%20secuencias%20e%20%C3%ADndices/Vistas.md)
 - [X] 7. [Scripts en PL/pgSQL](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Procedimientos%20y%20funciones/Procedimientos_funciones.md)
 - [ ] 8. Extras
-   - [X] 8.1. Cursores
+   - [X] 8.1. [Cursores](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Extras/Cursores.md)
    - [ ] 8.2. Prototipo de interfaz de usuario
    - [ ] 8.3. Plan de pruebas
    - [ ] 8.4. Especificaciones de pruebas en [formato features Gherkin (ver ejemplo)](features/admin-carteles.feature) 

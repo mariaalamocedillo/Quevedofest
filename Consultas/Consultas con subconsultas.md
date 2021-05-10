@@ -6,6 +6,20 @@ FROM artista
 WHERE id IN (SELECT id_artista FROM camerino_artista)
 	AND id NOT IN (SELECT id_artista FROM agenda WHERE fecha = '2021-05-20');
 ```
+Mostrar los carteles donde no se ha añadido ninguna actuación
+```sql
+SELECT *
+FROM cartel c
+WHERE NOT EXISTS (SELECT DISTINCT(id_cartel) FROM agenda_cartel a WHERE c.id = a.id_cartel);
+```
+Mostrar los artistas que ganan más que cualquier banda
+```sql
+SELECT *
+FROM artista
+WHERE sueldo > ALL (SELECT sueldo FROM artista
+        WHERE campoArtistico = 'Banda') 
+    AND campoArtistico != 'Banda';
+```
 Mostar el artista más jóven (que no sea una banda) y el más mayor
 ```sql
 SELECT nombrelegal, nombreartistico, age(fechanac)
@@ -43,6 +57,13 @@ WHERE id_catering IN (SELECT id
     FROM catering 
     WHERE servicio_gratuito IS NULL);
 ```
+Mostrar el material de sonido que cuesta más que cualquiera de grabación
+```sql
+SELECT *
+FROM material
+WHERE precio > ANY (SELECT precio FROM material WHERE tipo = 'Grabacion') 
+    AND tipo = 'Sonido';
+```
 Mostar los distintos géneros musicales que tocarán los teloneros el dia 20
 ```sql
 SELECT DISTINCT(genero)
@@ -60,3 +81,13 @@ AND id IN (SELECT id_escenografia FROM material_escenografia
              WHERE nombre like 'Fuegos frios' 
 					OR nombre like 'Rotulos pirotecnicos'));
 ```
+Buscar los artistas que compartan el género y campo artístico con el artista cuyo id es 1
+```sql
+SELECT nombreLegal, campoartistico, genero, sueldo
+FROM artista
+WHERE (campoartistico, genero) = (
+	SELECT campoartistico, genero
+	FROM artista
+	WHERE id = 1)
+ AND id <> 1;
+ ```

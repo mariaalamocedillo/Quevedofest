@@ -227,3 +227,36 @@ begin
 end;
 $$
 ```
+Función que muestra el número de invitados que tiene el artista introducido por parámetro
+```sql
+create or replace function contar_invitados (
+		p_id_artista artista.id%type
+)
+returns integer
+language plpgsql
+as
+$$
+declare
+	v_id_artista artista.id%type;
+	v_invitados integer;
+begin
+   -- comprobamos que exista el artista
+   select id from artista
+   into v_id_artista
+   where id = p_id_artista;
+	--contamos los invitados
+	SELECT SUM(num_acompanantes) + COUNT(*)
+	FROM invitaciones
+	INTO v_invitados
+	WHERE id_artista = p_id_artista;
+	return v_invitados;
+   -- capturamos las excepciones
+   exception
+      when no_data_found then 
+         raise notice 'El material % no existe', p_id_material;
+      when others then
+         raise exception 'Se ha producido en un error inesperado';
+     
+end;
+$$
+```
