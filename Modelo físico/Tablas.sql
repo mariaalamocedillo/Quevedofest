@@ -175,13 +175,11 @@ CREATE TABLE puesto_catering (
 	id INT NOT NULL, 
 	id_catering INT NOT NULL,
 	num_puesto INT NOT NULL,
-	lugar_asignado char(2) NOT NULL,
-		id_espacio INT NOT NULL,
+	id_espacio INT NOT NULL,
 	servicio varchar(10) NOT NULL,
 	CONSTRAINT puesto_catering_pk PRIMARY KEY (id),
 	CONSTRAINT puesto_catering_catering_id_fk FOREIGN KEY (id_catering) 
         REFERENCES catering(id) ON DELETE CASCADE,
-    CONSTRAINT puesto_catering_lugar_ck CHECK (lugar_asignado IN ('1A', '2A', '1B', '2B')),
 	CONSTRAINT espacio_puesto_espacio_id_fk FOREIGN KEY (id_espacio) 
         REFERENCES espacio(id) ON DELETE CASCADE,
 	CONSTRAINT puesto_catering_servicio_ck CHECK (servicio IN ('Comida', 'Bebida', 'Mixto'))
