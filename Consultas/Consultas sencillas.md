@@ -3,45 +3,45 @@ Mostrar un listado con los artistas que no son españoles (que la primera letra 
 ```sql
 SELECT nombrelegal, dni_pas
 FROM artista
-WHERE substring(dni_pas from 1 for 1) ~ '[^0-9]';
+WHERE substring(dni_pas FROM 1 for 1) ~ '[^0-9]';
 ```
 Mostrar una lista con los artistas ordenado por sueldo y por edad (no incluir las bandas)
 ```sql
-SELECT nombrelegal, nombreartistico, extract(year from age(fechanac)), sueldo
-from artista
-where campoartistico not like 'Banda'
+SELECT nombrelegal, nombreartistico, extract(year FROM age(fechanac)), sueldo
+FROM artista
+where campoartistico NOT LIKE'Banda'
 ORDER BY fechanac, sueldo;
 ```
 Mostrar el material que más dinero ha costado (teniendo en cuenta el número de unidades compradas y el precio por unidad)
 ```sql
 SELECT nombre, tipo, precio*cantidad "coste", descripcion
-from material
+FROM material
 where precio*cantidad = (SELECT MAX(precio*cantidad)
-        from material);
+        FROM material);
 ```
 Mostrar el material que ha sido proporcionado por patrocinadores (el precio es nulo) con el tiempo que estará disponible
 ```sql
 SELECT nombre, tipo, descripcion, proveedor, (fin_disponibilidad - inicio_disponibilidad) "tiempo disponible"
-from material
+FROM material
 where precio IS NULL;
 ```
 Mostrar el material que no es alquilado (no tiene fecha de devolución)
 ```sql
 SELECT nombre, tipo, descripcion, proveedor, precio*cantidad as coste
-from material
+FROM material
 where fin_disponibilidad IS NULL;
 ```
 Mostrar las empresas de catering cuyo presupuesto esté entre 7000 y 14000 euros y ofrecen un servicio gratuito
 ```sql
 SELECT *
-from catering
+FROM catering
 where presupuesto BETWEEN 7000 AND 14000
 		AND servicio_gratuito IS NOT NULL;
 ```
 Mostrar las actuaciones que solo utilizan material de patrocinadores, con la empresa que patrocina
 ```sql
 SELECT eg.cod_actuacion, m.nombre, m.tipo, m.precio, m.proveedor
-from escenografia eg
+FROM escenografia eg
 	JOIN material_escenografia me ON eg.id = me.id_escenografia
 	JOIN material m ON me.id_material = m.id
 WHERE m.precio IS NULL;

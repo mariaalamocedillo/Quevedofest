@@ -2,7 +2,7 @@
 Mostrar el precio que tiene el material utilizado en la actuación con el codigo 14
 ```sql
 SELECT eg.cod_actuacion, SUM(m.precio*me.unidades) as "coste del material"
-from escenografia eg
+FROM escenografia eg
 	JOIN material_escenografia me ON eg.id = me.id_escenografia
 	JOIN material m ON me.id_material = m.id
 GROUP BY eg.cod_actuacion
@@ -18,7 +18,7 @@ Mostrar las tres actuaciones más caras (teniendo en cuenta el precio del materi
 ```sql
 SELECT eg.cod_actuacion, COALESCE(SUM(m.precio*me.unidades)::text, 'Sin material') as "coste del material",
 		a.sueldo as "sueldo artista", COALESCE(SUM(m.precio*me.unidades) + a.sueldo, a.sueldo) as "total"
-from escenografia eg
+FROM escenografia eg
 	FULL OUTER JOIN material_escenografia me ON eg.id = me.id_escenografia
 	FULL OUTER JOIN material m ON me.id_material = m.id
 	JOIN agenda ag ON eg.cod_actuacion = ag.cod_actuacion
@@ -31,16 +31,16 @@ Mostrar el artista principal, el telonero y la banda  que más va a cobrar (teni
 ```sql
 --Principal que más cobra
 SELECT nombrelegal, nombreartistico, sueldo
-from artista
-WHERE sueldo = (SELECT max(sueldo) from artista) AND campoartistico LIKE 'Banda';
+FROM artista
+WHERE sueldo = (SELECT max(sueldo) FROM artista) AND campoartistico LIKE 'Banda';
 --Banda que más cobra
 SELECT nombrelegal, nombreartistico, sueldo
-from artista
-WHERE sueldo = (SELECT max(sueldo) from artista) AND campoartistico NOT LIKE 'Banda';
+FROM artista
+WHERE sueldo = (SELECT max(sueldo) FROM artista) AND campoartistico NOT LIKE 'Banda';
 --Telonero que más cobra
 SELECT nombrelegal, nombreartistico, sueldo
-from artista
-WHERE sueldo = (SELECT max(sueldo) from artista where campoartistico iLIKE 'telonero');
+FROM artista
+WHERE sueldo = (SELECT max(sueldo) FROM artistaWHEREcampoartistico ILIKE 'telonero');
 ```
 Mostrar la media del coste del material y la suma total
 ```sql
@@ -55,21 +55,37 @@ FROM artista;
 Mostrar el coste total de los materiales agrupados por tipo que no proveen patrocinadores
 ```sql
 SELECT tipo, SUM(precio*cantidad) coste
-from material
+FROM material
 WHERE precio IS NOT NULL
 GROUP BY tipo
 order by tipo;
 ```
-Mostrar los patrocinadores que dan más de un material
+Mostrar los patrocinadores que proporcionan más de un material
 ```sql
 SELECT proveedor 
-from material 
+FROM material 
 where precio is null
 group by proveedor
 having count(*) > 1;
 ```
 Mostar la edad media de los artistas contratados
 ```sql
-SELECT AVG(EXTRACT(year from AGE(fechanac)))
+SELECT AVG(EXTRACT(year FROM AGE(fechanac)))
 FROM artista;
+```
+Hacer un resumen de los costes de materiales ordenados por tipos, con un balance del coste total de dicho tipo de material
+```sql
+SELECT tipo, nombre, SUM(precio*cantidad) coste
+FROM material
+WHERE precio IS NOT NULL
+GROUP BY rollup ((tipo),(nombre))
+order by tipo, nombre, "coste";
+```
+Realizar un balance del coste que supondrán los artistas teniendo en cuenta el género y la cantidad de actuaciones
+```sql
+SELECT genero, nombreartistico, SUM(a.sueldo)*COUNT(ag.*) sueldo
+FROM artista a
+	JOIN agenda ag ON a.id = ag.id_artista
+GROUP BY rollup ((genero),(nombreartistico))
+order by genero;
 ```

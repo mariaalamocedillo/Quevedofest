@@ -12,14 +12,14 @@ Mostrar los teloneros que no aparecen en carteles
 SELECT ar.nombrelegal, ac.id_cartel
 FROM artista ar
  LEFT JOIN artistas_cartel ac ON ar.id = ac.id_artista
-WHERE campoartistico ilike 'telonero' AND ac.id_artista IS NULL;
+WHERE campoartistico ILIKE 'telonero' AND ac.id_artista IS NULL;
 ```
 Mostrar los teloneros que actuarán el día 20 según escenario, con horarios y sueldo
 ```sql
 SELECT ar.nombrelegal, ar.sueldo, ag.fecha, ag.horario
 FROM artista ar
 	JOIN agenda ag ON ar.id = ag.id_artista
-WHERE ar.campoartistico ilike 'telonero' AND ag.fecha = '2021-05-20';
+WHERE ar.campoartistico ILIKE 'telonero' AND ag.fecha = '2021-05-20';
 ```
 Mostrar el material que ha sido almacenado, con su ubicación, que sea alquilado
 ```sql
@@ -53,11 +53,11 @@ FROM camerino_artista c
 Mostrar los preparativos necesarios para cada actuación el día 20; artista(nombre legal y tlf contacto), material, escenario (con su empleado encargado)...
 ```sql
 SELECT ar.nombrelegal artista, ar.telefono, ep.id as "id escenario", ep.empleado_encargado encargado, ag.horario, m.nombre material
-from escenografia eg
+FROM escenografia eg
 	JOIN agenda ag ON ag.cod_actuacion = eg.cod_actuacion
 	JOIN artista ar ON ar.id = ag.id_artista
 	JOIN espacio ep ON eg.id_espacio = ep.id
 	JOIN material_escenografia me ON eg.id = me.id_escenografia
 	JOIN material m ON m.id = me.id_material
-where extract(day from ag.fecha) = 20;
+where extract(day FROM ag.fecha) = 20;
 ```
