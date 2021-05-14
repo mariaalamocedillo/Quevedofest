@@ -22,6 +22,6 @@
    - [X] 8.1. [Cursores](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Extras/Cursores.md)
    - [ ] 8.2. Prototipo de interfaz de usuario
    - [ ] 8.3. Plan de pruebas
-   - [ ] 8.4. Especificaciones de pruebas en [formato features Gherkin (ver ejemplo)](features/admin-carteles.feature) 
+   - [ ] 8.4. Especificaciones de pruebas en formato features Gherkin (ver ejemplo)
    - [ ] 8.5. Diagrama de clases
    - [ ] 8.6. Ejemplo de acceso a la base de datos con Java y JDBC
