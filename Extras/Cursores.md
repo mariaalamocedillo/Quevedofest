@@ -12,13 +12,15 @@ declare
 	v_artista artista%rowtype;
 	cur_artista cursor for SELECT * FROM artista;
 begin
-	for v_artista in cur_artista loop	--recorremos los artistas, buscando los que coincidan con el género introducido y los mostramos de ser así
+	--recorremos los artistas, buscando los que coincidan con el género introducido y los mostramos de ser así
+	for v_artista in cur_artista loop	
 		if v_artista.genero = p_genero then
 			raise notice 'Artista % (%): % de %', v_artista.nombreartistico, v_artista.nombrelegal, v_artista.campoartistico, v_artista.genero;
 			v_artistas_genero := v_artistas_genero + 1;
 		end if;
 	end loop;
-	raise notice 'Núm artistas de %: %', p_genero, v_artistas_genero;--mostramos el total de artistas de dicho género
+	--mostramos el total de artistas de dicho género
+	raise notice 'Núm artistas de %: %', p_genero, v_artistas_genero;
 exception
    when others then
      raise exception 'Se ha producido un error inesperado';
@@ -37,9 +39,12 @@ declare
 	v_agenda artista%rowtype;
 	cur_agenda cursor for SELECT * FROM agenda;
 begin
-	for v_artista in cur_artista loop		--recorremos los artistas buscando el campo artístico de teloneros
-		if v_artista.campoartistico = 'telonero' then		--en caso de ser teloneros, procedemos a recorrer la agenda en busca de coincidencias con su id
+--recorremos cada artista para buscar el campo artístico de teloneros
+	for v_artista in cur_artista loop		
+		--en caso de ser teloneros, procedemos a recorrer la agenda en busca de coincidencias con su id
+		if v_artista.campoartistico = 'telonero' then		
 			raise notice 'Artista % (%): ', v_artista.nombreartistico, v_artista.nombrelegal;
+			--recorremos su agenda
 			for v_agenda in cur_agenda loop
 				if v_artista.id = v_agenda.id_artista then
 					raise notice '---actúa el % a las %', v_agenda.fecha, v_agenda.horario;
@@ -65,10 +70,12 @@ declare
 	v_rrss rrss_artista%rowtype;
 	cur_rrss cursor for SELECT * FROM rrss_artista;
 begin
-	for v_artista in cur_artista loop	--recorremos cada artista
+	--recorremos cada artista
+	for v_artista in cur_artista loop	
 		raise notice 'Cuentas de % (%): ', v_artista.nombreartistico, v_artista.nombrelegal;
-			for v_rrss in cur_rrss loop		--recorremos la tabla con sus redes sociales, mostrando sus cuentas (coincidiendo los id)
-				if v_artista.id = v_rrss.id_artista then
+			--recorremos la tabla con sus redes sociales, mostrando sus cuentas (coincidiendo los id)
+			for v_rrss in cur_rrss loop		
+				if v_artista.id = v_rrss.id_artista then --mostramos la plataforma y nombre de la cuenta del artista donde está el cursor
 					raise notice '**%: %', v_rrss.plataforma, v_rrss.nombre_cuenta;
 				end if;
 			end loop;
@@ -86,26 +93,28 @@ CREATE OR REPLACE PROCEDURE listado_materiales() AS
 $$
 DECLARE
  reg_t RECORD;
- cur_tipo CURSOR FOR SELECT DISTINCT(tipo) FROM material;	--cursor solo con los distintos tipos de materiales que hay
+ cur_tipo CURSOR FOR SELECT DISTINCT(tipo) FROM material;	--cursor que almacena sólo los distintos tipos de materiales que hay
  reg_m RECORD;
  cur_mat CURSOR FOR SELECT * FROM material ORDER BY tipo;
 BEGIN
  OPEN cur_tipo;
- LOOP
+ LOOP	--recorremos en un bucle loop los distintos tipos de materiales que hay
 	FETCH cur_tipo INTO reg_t;
 	EXIT WHEN NOT FOUND;
-	RAISE NOTICE 'Material de %:', reg_t.tipo;
+	RAISE NOTICE 'Material de %:', reg_t.tipo;	--mostramos el título (el tipo de material, al que le seguirá cada material de ese tipo)
 	FETCH cur_mat INTO reg_m;
-	OPEN cur_mat;		--abrimos el cursor de los materiales en el loop de los tipos para recorrer los materiales por cada tipo del cursor tipos
+	--abrimos el cursor de los materiales en el loop de los tipos para recorrer los materiales por cada tipo del cursor tipos
+	OPEN cur_mat;	
+	--recorremos los materiales con un while	
 	WHILE( FOUND ) LOOP
-			if reg_m.tipo = reg_t.tipo then		--mostramos solo los materiales con el mismo tipo que el cursor
+			if reg_m.tipo = reg_t.tipo then		--mostramos solo los materiales que comparte tipo con el cursor
 				RAISE NOTICE '	%: % unidades a %€', reg_m.nombre, reg_m.cantidad, reg_m.precio;
 			end if;
 			FETCH cur_mat INTO reg_m;
 	END LOOP;
-	 CLOSE cur_mat;
+	CLOSE cur_mat;	--cerramos el cursor de materiales
  END LOOP;
- CLOSE cur_tipo;
+ CLOSE cur_tipo;	--cerramos el cursor de los tipos de material
 END
 $$
 LANGUAGE 'plpgsql';
@@ -116,13 +125,15 @@ CREATE OR REPLACE PROCEDURE listado_espacios() AS
 $$
 DECLARE
  v_tipos RECORD;
- cur_tipo CURSOR FOR SELECT DISTINCT(tipo) FROM espacio;
+ cur_tipo CURSOR FOR SELECT DISTINCT(tipo) FROM espacio;	--consultamos los distintos tipos de espacios que hay en el cursor
  v_esp RECORD;
  cur_esp CURSOR FOR SELECT * FROM espacio;
 BEGIN
- for v_tipos in cur_tipo loop		--recorremos los distintos tipos de espacios
+ --recorremos los distintos tipos de espacios
+ for v_tipos in cur_tipo loop		
 		raise notice 'Información de %:', v_tipos.tipo;
-			for v_espt in cur_esp loop	--mostramos la informacion de todos los espacios cuyo tipo coincida
+			for v_espt in cur_esp loop	
+				--mostramos la informacion de todos los espacios cuyo tipo coincida
 				if v_esp.tipo = v_tipos.tipo then
 					raise notice '	id % en %, encargado: %, ', v_esp.id, v_esp.localizacion, v_esp.empleado_encargado;
 				end if;
@@ -170,7 +181,7 @@ begin
 end;
 $$
 ```
-Procedimiento que comprueba todos los materiales, asgurándose que se han encargado las cantidades necesarias para las actuaciones que lo necesitan; en caso de tener menos cantidad que unidades necesarias, se actualiza pidiendo las unidades necesarias (con un extra para evitar otro desabastecimiento)
+Procedimiento que comprueba todos los materiales fungibles (que se gastan según se usan), asgurándose que se han encargado las cantidades necesarias para las actuaciones que lo necesitan; en caso de tener menos cantidad que unidades necesarias, se actualiza pidiendo las unidades necesarias (con margen de seguridad para evitar otro desabastecimiento)
 ```sql
 CREATE OR REPLACE PROCEDURE reajuste_materiales()
 LANGUAGE 'plpgsql'
@@ -180,14 +191,16 @@ declare
     v_material material%rowtype;
 	v_me_unidades integer;
 	v_cant_a_añadir integer;
-	cur_material cursor for SELECT * FROM material;
+	cur_material cursor for SELECT * FROM material WHERE fin_disponibilidad IS NULL;	--ponemos el cursor en los materiales que no tienen fecha de devolución
 begin
-	for v_material in cur_material loop		--recorremos los materiales
+	--recorremos los materiales
+	for v_material in cur_material loop		
 		SELECT SUM(unidades) unidades from material_escenografia 	--capturamos las cantidades del material que se usarán
 		into v_me_unidades 
 		where id_material = v_material.id;
-		if v_material.cantidad < v_me_unidades then		--en caso de que la cantidad sea menor que las unidades usadas, procedemos a la compra de más cantidades
-			SELECT ROUND(v_me_unidades*1,4) - v_material.cantidad --se añade un extra a la cantidad para tener cierto margen
+		--comprobamos el material y las unidades que se usarán
+		if v_material.cantidad < v_me_unidades then		--en caso de que la cantidad sea menor que las unidades usadas, procedemos a aumentar la cantidad
+			SELECT ROUND(v_me_unidades*1,4) - v_material.cantidad 	--se añade un extra a la cantidad para tener cierto margen
 			INTO v_cant_a_añadir;	--esta variable mostrará la cantidad que falta para conseguir las unidades necesarias
 			--actualizamos la cantidad
 			update material
