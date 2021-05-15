@@ -11,30 +11,34 @@ Mostrar los teloneros que no aparecen en carteles
 ```sql
 SELECT ar.nombrelegal, ac.id_cartel
 FROM artista ar
- LEFT JOIN artistas_cartel ac ON ar.id = ac.id_artista
-WHERE campoartistico ILIKE 'telonero' AND ac.id_artista IS NULL;
+	LEFT JOIN artistas_cartel ac ON ar.id = ac.id_artista
+WHERE campoartistico ILIKE 'telonero' 
+		AND ac.id_artista IS NULL;
 ```
 Mostrar los teloneros que actuarán el día 20 según escenario, con horarios y sueldo
 ```sql
-SELECT ar.nombrelegal, ar.sueldo, ag.fecha, ag.horario
+SELECT ar.nombrelegal, ar.sueldo,  ag.horario
 FROM artista ar
 	JOIN agenda ag ON ar.id = ag.id_artista
-WHERE ar.campoartistico ILIKE 'telonero' AND ag.fecha = '2021-05-20';
+WHERE ar.campoartistico ILIKE 'telonero' 
+		AND EXTRACT(day from ag.fecha) = 20;
 ```
 Mostrar el material que ha sido almacenado, con su ubicación, que sea alquilado
 ```sql
 SELECT nombre, tipo, proveedor, almacenaje, fin_disponibilidad
 FROM material
-WHERE almacenaje != 'EU' AND fin_disponibilidad IS NOT NULL;
+WHERE almacenaje != 'EU' 
+		AND fin_disponibilidad IS NOT NULL;
 ```
 Mostar la lista empresas de catering y empleados encargados por sector
 ```sql
-SELECT pc.lugar_asignado sector, c.empresa_encargada, e.empleado_encargado
+SELECT pc.lugar_asignado sector, e.tipo espacio, c.empresa_encargada as "Empresa", 
+		e.empleado_encargado as "Encargado zona", count(*) AS "Num. puestos"
 FROM catering c
 	JOIN puesto_catering pc ON c.id = pc.id_catering
 	JOIN espacio e ON e.id = pc.id_espacio
-GROUP BY e.empleado_encargado, c.empresa_encargada, pc.lugar_asignado
-ORDER BY pc.lugar_asignado;
+GROUP BY pc.lugar_asignado, c.empresa_encargada, e.empleado_encargado, e.tipo
+ORDER BY sector;
 ```
 Mostrar los servicios gratuitos por sector, con la empresa encargada y su presupuesto
 ```sql

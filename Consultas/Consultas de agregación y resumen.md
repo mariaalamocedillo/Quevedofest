@@ -9,7 +9,7 @@ GROUP BY eg.cod_actuacion
 HAVING eg.cod_actuacion = 14
 ORDER BY eg.cod_actuacion;
 ```
-Mostrar el número total de invitados de artistas que habrá
+Mostrar el número total de invitados que traen los artistas
 ```sql
 SELECT SUM(num_acompanantes) + COUNT(*) as "Total de invitados"
 FROM invitaciones;
@@ -27,19 +27,24 @@ GROUP BY eg.cod_actuacion, a.sueldo
 ORDER BY "total" DESC
 LIMIT 3;
 ```
-Mostrar el artista principal, el telonero y la banda  que más va a cobrar (teniendo en cuenta el numero de actuaciones y su sueldo por actuacion)
+Mostrar la información del artista principal, el telonero y la banda que más van a cobrar (teniendo en cuenta el numero de actuaciones y su sueldo por actuacion)
 ```sql
 --Principal que más cobra
-SELECT nombrelegal, nombreartistico, sueldo
-FROM artista
-WHERE sueldo = (SELECT max(sueldo) FROM artista) AND campoartistico LIKE 'Banda';
+SELECT a.nombrelegal, a.nombreartistico, a.sueldo * COUNT(ag.*) Sueldo
+FROM artista a
+	JOIN agenda ag ON a.id = ag.id_artista
+WHERE sueldo = (SELECT max(sueldo) FROM artista) AND campoartistico NOT LIKE 'Banda'
+GROUP BY  a.nombrelegal, a.nombreartistico, a.sueldo;
 --Banda que más cobra
-SELECT nombrelegal, nombreartistico, sueldo
-FROM artista
-WHERE sueldo = (SELECT max(sueldo) FROM artista) AND campoartistico NOT LIKE 'Banda';
+SELECT a.nombrelegal, a.nombreartistico, a.sueldo * COUNT(ag.*) Sueldo
+FROM artista a
+	JOIN agenda ag ON a.id = ag.id_artista
+WHERE sueldo = (SELECT max(sueldo) FROM artista) AND campoartistico LIKE 'Banda'
+GROUP BY  a.nombrelegal, a.nombreartistico, a.sueldo;
 --Telonero que más cobra
 SELECT nombrelegal, nombreartistico, sueldo
 FROM artista
+	JOIN agenda ag ON a.id = ag.id_artista
 WHERE sueldo = (SELECT max(sueldo) FROM artistaWHEREcampoartistico ILIKE 'telonero');
 ```
 Mostrar la media del coste del material y la suma total
@@ -70,7 +75,7 @@ having count(*) > 1;
 ```
 Mostar la edad media de los artistas contratados
 ```sql
-SELECT AVG(EXTRACT(year FROM AGE(fechanac)))
+SELECT EXTRACT(year FROM AVG(AGE(fechanac)))
 FROM artista;
 ```
 Hacer un resumen de los costes de materiales ordenados por tipos, con un balance del coste total de dicho tipo de material
@@ -81,7 +86,7 @@ WHERE precio IS NOT NULL
 GROUP BY rollup ((tipo),(nombre))
 order by tipo, nombre, "coste";
 ```
-Realizar un balance del coste que supondrán los artistas teniendo en cuenta el género y la cantidad de actuaciones
+Realizar un balance del coste que supondrán los artistas teniendo en cuenta el género musical y la cantidad de actuaciones
 ```sql
 SELECT genero, nombreartistico, SUM(a.sueldo)*COUNT(ag.*) sueldo
 FROM artista a
