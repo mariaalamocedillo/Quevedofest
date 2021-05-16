@@ -152,6 +152,34 @@ begin
 end;
 $$
 ```
+Borrar un material de todas las tablas dado su identificador
+```sql
+create or replace procedure borrar_material (
+		p_id_material material.id%type
+)
+language plpgsql
+as
+$$
+declare
+	v_material material%rowtype;
+begin
+   -- comprobamos que exista el material
+   select * from material
+   into v_material
+   where id = p_id_material;
+	-- borramos el material
+   delete from material
+   where id = p_id_material;
+   raise notice 'Material eliminado correctamente';   --al establecer el borrado en cascada, se borrarán todas las referencias a dicho material en el resto de tablas
+   -- capturamos las excepciones
+   exception
+      when no_data_found then 
+         raise notice 'El material % no existe', p_id_material;
+      when others then
+         raise exception 'Se ha producido en un error inesperado';
+end;
+$$
+```
 # Funciones
 Función que devuelve el número de puestos que hay en un espacio, dado su identificador
 ```sql

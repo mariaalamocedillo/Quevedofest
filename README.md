@@ -1,6 +1,6 @@
 # QuevedoFest
 
-- [X] 1. [Introducción](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Introducci%C3%B3n/Introducci%C3%B3n.md)
+- [X] 1. [Introducción](/Introducci%C3%B3n/Introducci%C3%B3n.md)
 - [X] 2. Modelo Conceptual
    - [X] 2.1. [Especificaciones](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/Especificaciones.md)
    - [X] 2.2. [Diagrama Entidad-Relación](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Modelo%20conceptual/Modelo%20E-R.png)
@@ -18,10 +18,6 @@
    - [X] 5.4. [Consultas con subconsultas](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Consultas/Consultas%20con%20subconsultas.md)
 - [X] 6. [Vistas, secuencias e índices](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Vistas%2C%20secuencias%20e%20%C3%ADndices/Vistas.md)
 - [X] 7. [Scripts en PL/pgSQL](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Procedimientos%20y%20funciones/Procedimientos_funciones.md)
-- [ ] 8. Extras
+- [X] 8. Extras
    - [X] 8.1. [Cursores](https://github.com/mariaalamocedillo/Quevedofest/blob/main/Extras/Cursores.md)
-   - [ ] 8.2. Prototipo de interfaz de usuario
-   - [ ] 8.3. Plan de pruebas
-   - [ ] 8.4. Especificaciones de pruebas en formato features Gherkin (ver ejemplo)
-   - [ ] 8.5. Diagrama de clases
-   - [ ] 8.6. Ejemplo de acceso a la base de datos con Java y JDBC
+   - [X] 8.6. [Ejemplo de acceso a la base de datos con Java y JDBC](https://github.com/mariaalamocedillo/Quevedofest/tree/main/Extras/Quevedofest-JDBC/src/main/java/org/example)

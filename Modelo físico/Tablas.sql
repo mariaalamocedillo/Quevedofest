@@ -1,3 +1,9 @@
+-- PostgreSQL
+--
+-- Database: QuevedoFest
+DROP DATABASE IF EXISTS quevedofest;
+CREATE DATABASE quevedofest;
+
 --ÁREA ARTÍSTICA
 --
 -- Tabla: ARTISTA
@@ -71,9 +77,10 @@ CREATE TABLE agenda (
 	id_artista int NOT NULL,
 	fecha date NOT NULL,
 	horario time,
-  CONSTRAINT agenda_pk PRIMARY KEY (cod_actuacion),
+  	CONSTRAINT agenda_pk PRIMARY KEY (cod_actuacion),
 	CONSTRAINT agenda_artista_id_fk FOREIGN KEY (id_artista) 
-    REFERENCES artista(id) ON DELETE CASCADE
+    	REFERENCES artista(id) ON DELETE CASCADE,
+	CONSTRAINT agenda_actuacion_ux UNIQUE (id_artista, fecha, horario) --establecemos como únicos el conjunto de estos dos datos, pues un artista no puede actuar en la misma fecha y hora mas de una vez
 );
 --
 -- Tabla: AGENDA_CARTEL
