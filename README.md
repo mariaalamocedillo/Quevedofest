@@ -1,23 +1,23 @@
 # QuevedoFest
 
-- [X] 1. [Introducción](/Introducci%C3%B3n/Introducci%C3%B3n.md)
+- [X] 1. [Introducción](/Documentacion/Introducci%C3%B3n/Introducci%C3%B3n.md)
 - [X] 2. Modelo Conceptual
-   - [X] 2.1. [Especificaciones](/Modelo%20conceptual/Especificaciones.md)
-   - [X] 2.2. [Diagrama Entidad-Relación](/Modelo%20conceptual/Modelo%20E-R.png)
+   - [X] 2.1. [Especificaciones](/Documentacion/Modelo%20conceptual/Especificaciones.md)
+   - [X] 2.2. [Diagrama Entidad-Relación](/Documentacion/Modelo%20conceptual/Modelo%20E-R.png)
 - [X] 3. Modelo Lógico 
-   - [X] 3.1. [Modelo Relacional](/Modelo%20l%C3%B3gico/Modelo%20relacional.PNG)
-   - [X] 3.2. [Normalización/Desnormalización](/Modelo%20l%C3%B3gico/Modelo%20normalizado.png)
+   - [X] 3.1. [Modelo Relacional](/Documentacion/Modelo%20l%C3%B3gico/Modelo%20relacional.PNG)
+   - [X] 3.2. [Normalización/Desnormalización](/Documentacion/Modelo%20l%C3%B3gico/Modelo%20normalizado.png)
 - [X] 4. Modelo Físico
-   - [X] 4.1. [Diagrama de base de datos (notación "Crow's feet")](/Modelo%20f%C3%ADsico/Crows_feet.png)
-   - [X] 4.2. [Creación de tablas y otros objetos](/Modelo%20f%C3%ADsico/Tablas.sql)
-   - [X] 4.3. [Carga de datos de prueba](/Modelo%20f%C3%ADsico/Datos%20de%20prueba.sql)
+   - [X] 4.1. [Diagrama de base de datos (notación "Crow's feet")](/Documentacion/Modelo%20f%C3%ADsico/Crows_feet.png)
+   - [X] 4.2. [Creación de tablas y otros objetos](/Documentacion/Modelo%20f%C3%ADsico/Tablas.sql)
+   - [X] 4.3. [Carga de datos de prueba](/Documentacion/Modelo%20f%C3%ADsico/Datos%20de%20prueba.sql)
 - [X] 5. Consultas de la base de datos
-   - [X] 5.1. [Consultas más frecuentes](/Consultas/Consultas%20frecuentes.md)
-   - [X] 5.2. [Consultas sencillas](/Consultas/Consultas%20sencillas.md)
-   - [X] 5.3. [Consultas de agregación y resumen](/Consultas/Consultas%20de%20agregaci%C3%B3n%20y%20resumen.md)
-   - [X] 5.4. [Consultas con subconsultas](/Consultas/Consultas%20con%20subconsultas.md)
-- [X] 6. [Vistas, secuencias e índices](/Vistas%2C%20secuencias%20e%20%C3%ADndices/Vistas.md)
-- [X] 7. [Scripts en PL/pgSQL](/Procedimientos%20y%20funciones/Procedimientos_funciones.md)
+   - [X] 5.1. [Consultas más frecuentes](/Documentacion/Consultas/Consultas%20frecuentes.md)
+   - [X] 5.2. [Consultas sencillas](/Documentacion/Consultas/Consultas%20sencillas.md)
+   - [X] 5.3. [Consultas de agregación y resumen](/Documentacion/Consultas/Consultas%20de%20agregaci%C3%B3n%20y%20resumen.md)
+   - [X] 5.4. [Consultas con subconsultas](/Documentacion/Consultas/Consultas%20con%20subconsultas.md)
+- [X] 6. [Vistas, secuencias e índices](/Documentacion/Vistas%2C%20secuencias%20e%20%C3%ADndices/Vistas.md)
+- [X] 7. [Scripts en PL/pgSQL](/Documentacion/Procedimientos%20y%20funciones/Procedimientos_funciones.md)
 - [X] 8. Extras
-   - [X] 8.1. [Cursores](/Extras/Cursores.md)
-   - [X] 8.6. [Ejemplo de acceso a la base de datos con Java y JDBC](/Extras/Quevedofest-JDBC/src/main/java/org/example)
+   - [X] 8.1. [Cursores](/Documentacion/Extras/Cursores.md)
+   - [X] 8.6. [Ejemplo de acceso a la base de datos con Java y JDBC](/Documentacion/Extras/Quevedofest-JDBC/src/main/java/org/example)
